@@ -9,13 +9,17 @@ function App() {
     <>
     <nav>
       <div className="logo-container">
-
+        <span className="logo">FLIXNET</span>
+      </div>
+      <div className="nav-menu">
+        <span>Se connecter</span>
+        <span>S'inscrire</span>
       </div>
     </nav>
       <BrowserRouter>
       <Routes>
         <Route path='/' element={<Acceuil />} />
-        <Route path='Home' element={<Home />} />
+        <Route path='home' element={<Home />} />
       </Routes>
     </BrowserRouter>
     </>

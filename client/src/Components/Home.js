@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Account(props) {
+function Home(props) {
     return (
-        <div>
-            <h1>Account</h1>
-        </div>
+        <main>
+            <section className='nouveautés'>Home</section>
+        </main>
     );
 }
 
-export default Account;
+export default Home;

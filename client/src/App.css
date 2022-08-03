@@ -1,10 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+nav {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  color: #FFFFFF;
+  background: black;
+}
+
+span.logo {
+  font-size: 40px;
+  font-family: 'Bebas Neue', cursive;
+  letter-spacing: 4px;
+  color: #DB202C;
+}
+
+
+.nav-menu {
+  width: 20%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/*Caroussel*/
+
+button.netflixClone-acceuil-button.btn.btn-light {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  margin-right: 60px;
+}
+
+.netfilxClone-acceuil-link {
+  color: black;
+  text-decoration: none;
+}
+
+.netfilxClone-acceuil-link:hover {
+  color: #000000;
+  font-weight: 500;
+}
+
+a.carousel-control-prev {
+  display: none;
+}
+
+a.carousel-control-next {
+  display: none;
+}
+
+.caroussel-image {
+  width: 100%;
+  max-width: 100%;
+  height: calc(100vh - 80px);
 }
 
 @media (prefers-reduced-motion: no-preference) {
