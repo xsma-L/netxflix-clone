@@ -11,10 +11,10 @@ function App() {
       <div className="logo-container">
         <span className="logo">FLIXNET</span>
       </div>
-      <div className="nav-menu">
+      {/* <div className="nav-menu">
         <span>Se connecter</span>
         <span>S'inscrire</span>
-      </div>
+      </div> */}
     </nav>
       <BrowserRouter>
       <Routes>
