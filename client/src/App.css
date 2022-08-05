@@ -111,14 +111,24 @@ span.nav-userName {
   overflow: auto;
 }
 
+
+/*Nouveautés*/
+
 section.nouveautés {
   margin-top: 20px;
+  padding: 0 20px 0 20px;
 }
 
 .discover-content {
   display: flex;
   margin-top: 20px;
+  overflow: overlay;
 }
+
+.discover-content::-webkit-scrollbar {
+  display: none;
+}
+
 .show-container {
   display: flex;
   flex-direction: column;
@@ -128,8 +138,14 @@ section.nouveautés {
   margin-right: 20px;
 }
 
+.show-container:hover {
+  cursor: pointer;
+  background: #FFFFFF;
+  color: #000000;
+}
+
 img.show-poster {
-  width: 200px;
+  width: 180px;
 }
 
 span.show-name {
@@ -139,6 +155,10 @@ span.show-name {
   font-size: 15px;
   margin-top: 10px;
   font-weight: bold;
+}
+
+.popular-tvShow {
+  margin-top: 30px;
 }
 
 

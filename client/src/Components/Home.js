@@ -2,8 +2,13 @@ import {React, useEffect, useState} from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
+import SearchWithGenre from '../Hooks/SearchWithGenre';
+
 function Home() {
-    const [discoverContent, setDiscoverContent] = useState(null);
+    const [popularMovies, setPoularMovies] = useState([]);
+    const [popularTvShows, setPopularTvShows] = useState([]);
+    const [moviesGenre, setMoviesGenres] = useState([]);
+    const [tvsGenre, setTvGenres] = useState([]);
     const location = useLocation();
     const user = location.state;
     
@@ -12,33 +17,86 @@ function Home() {
         localStorage.setItem('userName', user.name);
         localStorage.setItem('userPicture', user.picture);
 
-        axios.get('https://api.themoviedb.org/3/discover/movie', {
+        axios.get('https://api.themoviedb.org/3/movie/popular/', {
             params : {
                 api_key: process.env.REACT_APP_TMB_API_KEY,
-                langage : 'fr-FR',
+                language : 'fr-FR'
             }
         })
         .catch(err => console.log(err))
-        .then(res => setDiscoverContent(res.data.results))
+        .then(res => setPoularMovies(res.data.results))
+
+        axios.get('https://api.themoviedb.org/3/tv/popular/', {
+            params : {
+                api_key: process.env.REACT_APP_TMB_API_KEY,
+                language : 'fr-FR'
+            }
+        })
+        .catch(err => console.log(err))
+        .then(res => setPopularTvShows(res.data.results))
+
+        axios.get('https://api.themoviedb.org/3/genre/movie/list', {
+            params: {
+                api_key: process.env.REACT_APP_TMB_API_KEY,
+                language: 'fr-FR'
+            }
+        })
+        .catch(err => console.log(err))
+        .then(res => setMoviesGenres(res.data.genres))
+
+        axios.get('https://api.themoviedb.org/3/genre/tv/list', {
+            params: {
+                api_key: process.env.REACT_APP_TMB_API_KEY,
+                language: 'fr-FR'
+            }
+        })
+        .catch(err => console.log(err))
+        .then(res => setTvGenres(res.data.genres))
     }, []);
 
 
     return (
         <main className='home-main'>
             <section className='nouveautés'>
-                <h3>Populaire en ce moment</h3>
-                <div className='discover-content'>
-                    { discoverContent ?
-                        discoverContent.map(show => {
-                            return (
-                                <div key={ show.id } className='show-container'>
-                                    <img className='show-poster' alt={ show.title } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
-                                    <span className='show-name'>{ show.title }</span>
-                                </div>
-                            )
-                        })
-                    : ""}
+                <div className='popular-movies'>
+                    <h3>Films populaires</h3>
+                    <div className='discover-content'>
+                        { popularMovies ?
+                            popularMovies.map(show => {
+                                return (
+                                    <div key={ show.id } className='show-container'>
+                                        <img className='show-poster' alt={ show.title } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
+                                        <span className='show-name'>{ show.title }</span>
+                                    </div>
+                                )
+                            })
+                        : ""}
+                    </div>
                 </div>
+                <div className='popular-tvShow'>
+                    <h3>Séries populaires</h3>
+                    <div className='discover-content'>
+                        { popularTvShows ?
+                            popularTvShows.map(show => {
+                                return (
+                                    <div key={ show.id } className='show-container'>
+                                        <img className='show-poster' alt={ show.name } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
+                                        <span className='show-name'>{ show.name }</span>
+                                    </div>
+                                )
+                            })
+                        : ""}
+                    </div>
+                </div>
+            </section>
+            <section className='movies-discover'>
+                { moviesGenre.length > 0 && tvsGenre.length > 0 ?
+                    tvsGenre.map(genre => {
+                        return (
+                            <SearchWithGenre idGenre={10759} genreName={'Action & Adventure'} limit={10} tvGenre={tvsGenre} moviesGenre={moviesGenre}/>
+                        )
+                    })
+                : ""}
             </section>
         </main>
     );

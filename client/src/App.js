@@ -13,7 +13,6 @@ function App() {
   // localStorage.clear();
   
   useEffect(() => {
-    console.log('useEffect')
     // console.log(window.addEventListener)
     window.addEventListener('storage', checkUserData);
     
