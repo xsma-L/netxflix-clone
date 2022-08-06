@@ -190,6 +190,11 @@ section.discover {
   margin-right: 20px;
 }
 
+.see-more a {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
 span.cross {
   font-size: 70px;
   font-weight: bold;
@@ -199,6 +204,29 @@ span.cross {
 span.see-more-text {
   font-size: 20px;
   font-weight: bold;
+}
+
+/**************/
+
+/*Catalogue*/
+
+main.catalogue {
+  /* height: calc(100vh - 80px); */
+  background: black;
+  color: white;
+  overflow: aut
+  
+}
+
+.flixnet-catalogue h1 {
+  height: 41px;
+}
+
+.flixnet-catalogue-elements {
+  height: calc(100vh - 136px);
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  overflow: overlay;
 }
 
 @media (prefers-reduced-motion: no-preference) {

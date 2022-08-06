@@ -1,5 +1,7 @@
 import {React, useState, useEffect} from 'react';
-import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Catalogue from './Catalogue';
 
 /*
 1. Récupère en props le type (film/série), l'id du genre (string) ainsi que la taiile du tabeau souhaité (int).
@@ -65,10 +67,10 @@ tvGenres :
 
 function SearchWithGenre(props) {
 
+    const [datas, setDatas] = useState([]);
     const moviesGenre = props.moviesGenre;
     const tvGenres = props.tvGenres;
-    const [datas, setDatas] = useState([]);
-
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(datas.length === 0) {
@@ -173,10 +175,12 @@ function SearchWithGenre(props) {
                         })
                     : ""}
                     <div className='see-more'>
-                        <div className='show-poster see-more-pic'>
-                            <span className='cross'>+</span>
-                            <span className='see-more-text'>En voir plus</span>
-                        </div>
+                        <Link to={`/catalogue/${props.idGenre}`}>
+                            <div className='show-poster see-more-pic'>
+                                <span className='cross'>+</span>
+                                <span className='see-more-text'>En voir plus</span>
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </div>            

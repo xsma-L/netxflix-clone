@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Acceuil from './Components/Acceuil';
 import Home from './Components/Home';
+import Catalogue from "./Components/Catalogue";
 import './App.css';
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Acceuil />} />
         <Route path='home' element={<Home />} />
+        <Route path='catalogue/:genreID' element={<Catalogue />} />
       </Routes>
     </BrowserRouter>
     </>
