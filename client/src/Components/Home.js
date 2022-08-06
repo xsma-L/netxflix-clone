@@ -2,13 +2,13 @@ import {React, useEffect, useState} from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
-import SearchWithGenre from '../Hooks/SearchWithGenre';
+import SearchWithGenre from './SearchWithGenre';
 
 function Home() {
     const [popularMovies, setPoularMovies] = useState([]);
     const [popularTvShows, setPopularTvShows] = useState([]);
     const [moviesGenre, setMoviesGenres] = useState([]);
-    const [tvsGenre, setTvGenres] = useState([]);
+    const [tvGenre, setTvGenres] = useState([]);
     const location = useLocation();
     const user = location.state;
     
@@ -89,11 +89,11 @@ function Home() {
                     </div>
                 </div>
             </section>
-            <section className='movies-discover'>
-                { moviesGenre.length > 0 && tvsGenre.length > 0 ?
-                    tvsGenre.map(genre => {
+            <section className='discover'>
+                { moviesGenre.length > 0 && tvGenre.length > 0 ?
+                    tvGenre.map(genre => {
                         return (
-                            <SearchWithGenre idGenre={10759} genreName={'Action & Adventure'} limit={10} tvGenre={tvsGenre} moviesGenre={moviesGenre}/>
+                            <SearchWithGenre key={genre.id} idGenre={genre.id} genreName={genre.name} limit={10} genre={genre} moviesGenre={moviesGenre}/>
                         )
                     })
                 : ""}

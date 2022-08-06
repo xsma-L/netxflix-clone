@@ -71,21 +71,35 @@ function SearchWithGenre(props) {
 
 
     useEffect(() => {
-        // console.log(datas.length)
         if(datas.length === 0) {
-            axios.get('https://api.themoviedb.org/3/discover/tv', {
+            if(props.idGenre === 10762 || props.idGenre === 10763 || props.idGenre === 10764 || props.idGenre === 10766 || props.idGenre === 10766 || props.idGenre === 10767) {
+                axios.get('https://api.themoviedb.org/3/discover/tv', {
                 params :{
                     api_key : process.env.REACT_APP_TMB_API_KEY,
                     language : 'fr-FR',
                     with_genres : props.idGenre
                 } 
-            })
-            .catch(err => console.log(err))
-            .then(res => {
-                const tvShowsResponse = res.data.results;
-                let dataToSet = tvShowsResponse.slice(0, 10) 
-                setDatas(dataToSet);
-            })
+                })
+                .catch(err => console.log(err))
+                .then(res => {
+                    const tvShowsResponse = res.data.results;
+                    setDatas(tvShowsResponse);
+                })
+            } else {
+                axios.get('https://api.themoviedb.org/3/discover/tv', {
+                    params :{
+                        api_key : process.env.REACT_APP_TMB_API_KEY,
+                        language : 'fr-FR',
+                        with_genres : props.idGenre
+                    } 
+                })
+                .catch(err => console.log(err))
+                .then(res => {
+                    const tvShowsResponse = res.data.results;
+                    let dataToSet = tvShowsResponse.slice(0, 10) 
+                    setDatas(dataToSet);
+                })
+            }
         } else if (datas.length === 10) {
             searchMoviesByGenre(props.genreName)
         } else {
@@ -101,25 +115,9 @@ function SearchWithGenre(props) {
                         addMovies(genre.id);
                 })
                 break;
-            case 'Kids' :
-                console.log('kids');
-                break;
-            case 'News' : 
-                console.log('news')
-                break;
-            case 'Reality' : 
-                console.log('reality');
-                break;
-            case 'Science-Fiction & Fantastique' :
-                break;
-            case 'Soap' : 
-                console.log('soap');
-                break;
-            case 'Talk' : 
-                console.log('talk');
-                break;
             case 'War & Politics' : 
                 console.log('war');
+                break;
             default :
             moviesGenre.map(genre => {
                 if(genre.name === genreName)
@@ -174,6 +172,12 @@ function SearchWithGenre(props) {
                             )
                         })
                     : ""}
+                    <div className='see-more'>
+                        <div className='show-poster see-more-pic'>
+                            <span className='cross'>+</span>
+                            <span className='see-more-text'>En voir plus</span>
+                        </div>
+                    </div>
                 </div>
             </div>            
         </div>

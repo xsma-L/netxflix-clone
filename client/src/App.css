@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&family=Montserrat&family=Varela+Round&display=swap');
 
 .App {
   text-align: center;
@@ -119,6 +119,7 @@ section.nouveautés {
   padding: 0 20px 0 20px;
 }
 
+
 .discover-content {
   display: flex;
   margin-top: 20px;
@@ -136,6 +137,7 @@ section.nouveautés {
   align-items: center;
   padding: 10px 10px 15px 10px;
   margin-right: 20px;
+  transition: 0.5s;
 }
 
 .show-container:hover {
@@ -161,6 +163,43 @@ span.show-name {
   margin-top: 30px;
 }
 
+section.discover {
+  margin-top: 20px;
+  padding: 0 20px 0 20px;
+}
+
+.show-poster.see-more-pic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  height: 270px;
+  background: #6e6e6e7a;
+  transition: 0.5s;
+}
+
+.show-poster.see-more-pic:hover {
+  cursor: pointer;
+  background: #6e6e6edb;
+}
+
+.see-more {
+  height: fit-content;
+  padding: 10px 10px 15px 10px;
+  margin-right: 20px;
+}
+
+span.cross {
+  font-size: 70px;
+  font-weight: bold;
+  font-family: 'Varela Round', sans-serif;
+}
+
+span.see-more-text {
+  font-size: 20px;
+  font-weight: bold;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
