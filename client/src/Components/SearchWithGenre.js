@@ -175,7 +175,7 @@ function SearchWithGenre(props) {
                         })
                     : ""}
                     <div className='see-more'>
-                        <Link to={`/catalogue/${props.idGenre}`}>
+                        <Link to={`/catalogue/${props.genreName}/${props.idGenre}`}>
                             <div className='show-poster see-more-pic'>
                                 <span className='cross'>+</span>
                                 <span className='see-more-text'>En voir plus</span>

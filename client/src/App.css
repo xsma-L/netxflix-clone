@@ -220,14 +220,34 @@ main.catalogue {
 }
 
 .flixnet-catalogue h1 {
-  height: 41px;
+  height: 42px;
 }
 
 .flixnet-catalogue-elements {
-  height: calc(100vh - 136px);
+  height: calc(100vh - 130px);
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
+  grid-template-columns: 250px 250px 250px 250px 250px 250px;
+  justify-content: center;
   overflow: overlay;
+}
+
+.flixnet-catalogue-elements {
+  scroll-padding-right: 10px;
+}
+
+.flixnet-catalogue-elements::-webkit-scrollbar {
+  width: 0.4em;
+  margin-right: 5px;
+}
+ 
+.flixnet-catalogue-elements::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  width: 5px;
+}
+ 
+.flixnet-catalogue-elements::-webkit-scrollbar-thumb {
+  background-color: #DB202C;
+  border-radius: 10px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
