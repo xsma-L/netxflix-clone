@@ -3,27 +3,30 @@ import axios from 'axios';
 
 
 function InfiniteList(props) {
-    const [loadMore, setLoadMore] = useState(false);
+    const [loadMore, setLoadMore] = useState(true);
     const [page, setPage] = useState(1);
     const ref = useRef();
     
     // The scroll listener
     const handleScroll = useCallback(() => {
+        let nextPage = page;
         const div = ref.current;
         let scrHeight = div.scrollHeight;
         let scrTop = div.scrollTop;
         let clientHeight = div.clientHeight;
-        // console.log('srolling...');
-
-        console.log(`srcHeight: ${scrHeight} => ${scrTop + clientHeight - 0.5}`);
+        console.log(`scrolling on page ${nextPage}`);
+        
         if(scrHeight === scrTop + clientHeight || scrHeight === scrTop + clientHeight - 0.5) {
+            setLoadMore(true);
+            const div = ref.current;
+            div.removeEventListener('scroll', handleScroll);
             // console.log(page);
             // getData();
             // setLoadMore(true);
-            let nextPage = page;
-            console.log(nextPage);
-            nextPage++
-            setPage(nextPage);
+            
+            // nextPage++;
+            // console.log(nextPage);
+            // setPage(nextPage);
             console.log('end of the catalogue');
         }
     }, [])
@@ -32,13 +35,16 @@ function InfiniteList(props) {
     useEffect(() => {
         console.log(`useEffect is running... page state value: ${page}`)
         const div = ref.current;
+        if(loadMore) {
+            getData();
+            setLoadMore(false);
+            return () =>  div.removeEventListener('scroll', handleScroll);
+        }
         div.addEventListener("scroll", handleScroll);
-        // setLoadMore(false)
-        getData();
-    }, [page])
+    }, [loadMore, page])
     
     const getData = () => {
-        console.log(`page ${page}`)
+        if(loadMore)
         console.log('getData is running...')
         axios.get('https://api.themoviedb.org/3/discover/tv', {
             params :{
@@ -51,6 +57,10 @@ function InfiniteList(props) {
         .then((res) => {
             console.log(res.data.results)
             props.setData([...props.data, ...res.data.results]);
+            setLoadMore(false)
+            let nextPage = page;
+            nextPage++;
+            setPage(nextPage)
         })
         .catch(console.log);
     } 
