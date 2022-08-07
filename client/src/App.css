@@ -183,6 +183,7 @@ section.discover {
 .show-poster.see-more-pic:hover {
   cursor: pointer;
   background: #6e6e6edb;
+  color: #FFFFFF;
 }
 
 .see-more {
@@ -216,11 +217,81 @@ main.catalogue {
   background: black;
   color: white;
   overflow: aut
-  
+}
+
+.flixnet-catalogue-tile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .flixnet-catalogue h1 {
   height: 42px;
+}
+
+.toogle-button {
+  margin-right: 60px;
+}
+
+
+.toogle {
+  position: relative;
+  display: flex;
+  width: 90px;
+  height: 35px;
+  background: #000000;
+  border-radius: 30px;
+  border: 2px solid #db3932;
+}
+
+.toogle.series {
+  justify-content: flex-end;
+}
+
+.toogle.films {
+  justify-content: flex-start;
+}
+
+.toogle:after {
+  content: '';
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: #db3932;
+  top: -2px;
+  left: 0px;
+  transition: all 0.5s;
+}
+
+.toogle p {
+  align-self: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.toogle-series {
+  color: #db3932;
+  margin: 0 5px 0 0;
+}
+
+.toogle-films {
+  color: #000000;
+  margin: 0 0 0 5px;
+}
+
+.catalog-checkbox:checked + .toogle:after {
+  left: calc(90px - 38px);
+}
+
+.catalog-checkbox:checked + .toogle {
+  background-color: #ffffff;
+}
+
+.catalog-checkbox {
+  display: none;
 }
 
 .flixnet-catalogue-elements {
