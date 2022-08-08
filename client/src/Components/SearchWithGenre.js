@@ -68,11 +68,12 @@ tvGenres :
 function SearchWithGenre(props) {
 
     const [datas, setDatas] = useState([]);
+    const [movieGenreId, setMovieGenreId] = useState(null);
     const moviesGenre = props.moviesGenre;
-    const tvGenres = props.tvGenres;
-    const navigate = useNavigate();
-
+    // const navigate = useNavigate();
+    
     useEffect(() => {
+        // console.log(props);
         if(datas.length === 0) {
             if(props.idGenre === 10762 || props.idGenre === 10763 || props.idGenre === 10764 || props.idGenre === 10766 || props.idGenre === 10766 || props.idGenre === 10767) {
                 axios.get('https://api.themoviedb.org/3/discover/tv', {
@@ -103,18 +104,21 @@ function SearchWithGenre(props) {
                 })
             }
         } else if (datas.length === 10) {
-            searchMoviesByGenre(props.genreName)
+            findMoviesGenreID(props.genreName)
         } else {
             return;
         }
     }, [datas]);
     
-    const searchMoviesByGenre = (genreName, twoGenres = false) => {
+    const findMoviesGenreID = (genreName) => {
         switch (genreName) {
             case 'Action & Adventure':
                 moviesGenre.map(genre => {
-                    if(genre.name === 'Aventure')
+                    if(genre.name === 'Aventure'){
                         addMovies(genre.id);
+                        console.log(`Aventure ${genre.id}`)
+                        setMovieGenreId(genre.id);
+                    }
                 })
                 break;
             case 'War & Politics' : 
@@ -122,8 +126,10 @@ function SearchWithGenre(props) {
                 break;
             default :
             moviesGenre.map(genre => {
-                if(genre.name === genreName)
+                if(genre.name === genreName) {
+                    setMovieGenreId(genre.id);
                     addMovies(genre.id);
+                }
             })
         }
 
@@ -175,12 +181,21 @@ function SearchWithGenre(props) {
                         })
                     : ""}
                     <div className='see-more'>
-                        <Link to={`/catalogue/${props.genreName}/${props.idGenre}`}>
-                            <div className='show-poster see-more-pic'>
-                                <span className='cross'>+</span>
-                                <span className='see-more-text'>En voir plus</span>
-                            </div>
-                        </Link>
+                        {movieGenreId ? 
+                            <Link to={`/catalogue/${props.genreName}/${props.idGenre}`} state={{movieGenreId: movieGenreId}}>
+                                <div className='show-poster see-more-pic'>
+                                    <span className='cross'>+</span>
+                                    <span className='see-more-text'>En voir plus</span>
+                                </div>
+                            </Link>
+                        :
+                            <Link to={`/catalogue/${props.genreName}/${props.idGenre}`} state={{movieGenreId: null}}>
+                                <div className='show-poster see-more-pic'>
+                                    <span className='cross'>+</span>
+                                    <span className='see-more-text'>En voir plus</span>
+                                </div>
+                            </Link>
+                        }
                     </div>
                 </div>
             </div>            

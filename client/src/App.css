@@ -228,12 +228,12 @@ main.catalogue {
 
 .flixnet-catalogue h1 {
   height: 42px;
+  margin-left: 60px;
 }
 
 .toogle-button {
   margin-right: 60px;
 }
-
 
 .toogle {
   position: relative;
@@ -243,6 +243,10 @@ main.catalogue {
   background: #000000;
   border-radius: 30px;
   border: 2px solid #db3932;
+}
+
+.toogle:hover {
+  cursor: pointer;
 }
 
 .toogle.series {
