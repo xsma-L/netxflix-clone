@@ -2,43 +2,27 @@ import { React, useEffect, useState, useRef, useCallback } from 'react';
 import axios from 'axios';
 
 
-function InfiniteList(props) {
+function InfiniteList(props, ref) {
     // const [type, setType] = useState('tv');
     const [page, setPage] = useState(1);
     const [loadMore, setLoadMore] = useState(true);
     const [isSwitched, setIsSwitched] = useState(false);
-    const [isSerie, setIsSerie] = useState(null);
-    const ref = useRef();
+    const [firstCall, setFirstCall] = useState(true);
+    const [isSerie, setIsSerie] = useState(true);
+    const refe = useRef();
+
     /*
-    Si switch === true => films
-    Si switch === false => séries
-
-    1. Changer le type en fonction de switch (tv/movie)
-    2. Remettre la page à 1
-    3. Verifier si c'est une serie ou non & mettre a jour getData
-
-    3.5 Quand GetData aura fonctioné :
+        si switched === true et que le type 'a pas changer
+        ajouter les elemnts à la suite et su
     */
   
     // Attach the scroll listener to the div
     useEffect(() => {
-        const div = ref.current;
+        const div = refe.current;
 
-        // if(props.infos.isSerie && props.infos.genreId) {
-        //     // Series
-        //     setIsSwitched(true);
-        //     if(loadMore === false)
-        //     console.log('go see a show');
-        //     // setLoadMore(true);
-        // } 
-        // else {
-        //     // Films
-        //     setIsSwitched(true);
-        //     if(loadMore === false) 
-        //     console.log('go see a movie');
-        //     // setLoadMore(true);
-        // }
-
+        if(!isSwitched) {
+            setIsSwitched(props.infos.switched);
+        }
 
         if(loadMore) {
             getData();
@@ -47,15 +31,21 @@ function InfiniteList(props) {
         }
 
         div.addEventListener("scroll", handleScroll);
-    }, [loadMore, props.infos.genreId])
+    }, [loadMore, props.infos])
 
-      // The scroll listener
-      const handleScroll = useCallback(() => {
-        const div = ref.current;
+    // The scroll listener
+    const handleScroll = useCallback(() => {
+        const div = refe.current;
         
         if(div.scrollHeight === div.scrollTop + div.clientHeight || div.scrollHeight === div.scrollTop + div.clientHeight - 0.5)
         setLoadMore(true);
     }, [])
+
+    const switchType = () => {
+        console.log('clicked')
+        let newType = !isSerie;
+        setIsSerie(newType)
+    }
     
     const getData = () => {
         if(loadMore)
@@ -66,13 +56,13 @@ function InfiniteList(props) {
 
         if(props.infos.isSerie) {
             type = 'tv';
-            console.log('tv');
+            // console.log('tv');
         } else {
             type = 'movie';
-            console.log('movie');
+            // console.log('movie');
         }
 
-        if(isSwitched) {
+        if(isSwitched ) {
             pageNb = 1;
         } else {
             pageNb = page;
@@ -88,10 +78,12 @@ function InfiniteList(props) {
         })
         .then((res) => {
             if(isSwitched) {
+                console.log('test')
                 props.setData(res.data.results);
                 setIsSwitched(false);
             } else {
                 props.setData([...props.data, ...res.data.results]);
+                setFirstCall(false);
             }
             setLoadMore(false)
             pageNb++
@@ -101,17 +93,30 @@ function InfiniteList(props) {
     } 
 
     return (
-        <div className='flixnet-catalogue-elements' ref={ref}>
-            { props.data ?
-                props.data.map(show => {
-                    return (
-                        <div key={ show.id } className='show-container'>
-                            <img className='show-poster' alt={ show.name } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
-                            <span className='show-name'>{ show.name }</span>
-                        </div>
-                    )
-                })
-            : ""}
+        <div className='pics-display'>
+            <div className='button-container'>
+                <input type='checkbox' id='switch' className='flixnet-catalog-switch catalog-checkbox'/>
+                    {isSerie ? 
+                    <label htmlFor='switch' className='toogle series' onClick={switchType}>
+                        <p className='toogle-series'>Séries</p>
+                    </label>
+                    : 
+                    <label htmlFor='switch' className='toogle films' onClick={switchType}>
+                        <p className='toogle-films'>Films</p> 
+                    </label> }
+            </div>
+            <div className='flixnet-catalogue-elements' ref={refe}>
+                { props.data ?
+                    props.data.map(show => {
+                        return (
+                            <div key={ show.id } className='show-container'>
+                                <img className='show-poster' alt={ show.name } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
+                                <span className='show-name'>{ show.name }</span>
+                            </div>
+                        )
+                    })
+                : ""}
+            </div> 
         </div>
     );
 }

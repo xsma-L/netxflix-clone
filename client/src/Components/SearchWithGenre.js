@@ -73,7 +73,6 @@ function SearchWithGenre(props) {
     // const navigate = useNavigate();
     
     useEffect(() => {
-        // console.log(props);
         if(datas.length === 0) {
             if(props.idGenre === 10762 || props.idGenre === 10763 || props.idGenre === 10764 || props.idGenre === 10766 || props.idGenre === 10766 || props.idGenre === 10767) {
                 axios.get('https://api.themoviedb.org/3/discover/tv', {
@@ -116,13 +115,13 @@ function SearchWithGenre(props) {
                 moviesGenre.map(genre => {
                     if(genre.name === 'Aventure'){
                         addMovies(genre.id);
-                        console.log(`Aventure ${genre.id}`)
+                        // console.log(`Aventure ${genre.id}`)
                         setMovieGenreId(genre.id);
                     }
                 })
                 break;
             case 'War & Politics' : 
-                console.log('war');
+                // console.log('war');
                 break;
             default :
             moviesGenre.map(genre => {

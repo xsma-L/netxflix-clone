@@ -24,31 +24,17 @@ function Catalogue(props) {
         }
     }, [isSerie])
 
-    const switchType = () => {
-        let newType = !isSerie;
-        setIsSerie(newType)
-        setSwitched(!switched);
-    }
+
 
     return (
         <main className='catalogue' id='flixnet-catalogue'>
-            {/* {console.log(genreId)} */}
             <section className='flixnet-catalogue'>
                 <div className='flixnet-catalogue-tile'>
                     <h1>{genreName}</h1>
                     <div className='toogle-button'>
-                        <input type='checkbox' id='switch' className='flixnet-catalog-switch catalog-checkbox'/>
-                            {isSerie ?
-                            <label htmlFor='switch' className='toogle series' onClick={switchType}>
-                                <p className='toogle-series'>Séries</p>
-                            </label>
-                            :
-                            <label htmlFor='switch' className='toogle films' onClick={switchType}>
-                                <p className='toogle-films'>Films</p> 
-                            </label> }
                     </div>
                 </div>
-                <InfiniteList data={data} setData={setData} infos={{genreId: genreId, isSerie: isSerie, switched: switched}}/>
+                <InfiniteList data={data} setData={setData} infos={{genreId: genreId, isSerie: isSerie, switched: switched, seriesGenre: seriesGenreId, movieGenre: movieGenreId}}/>
             </section>
         </main>
     );
