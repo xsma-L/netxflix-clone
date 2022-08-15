@@ -240,6 +240,7 @@ main.catalogue {
   width: fit-content;
   align-self: self-end;
   margin-right: 55px;
+  padding-bottom: 10px;
 }
 
 .toogle-button {
@@ -310,7 +311,7 @@ main.catalogue {
 }
 
 .flixnet-catalogue-elements {
-  height: calc(100vh - 165px);
+  height: calc(100vh - 175px);
   display: grid;
   grid-template-columns: 250px 250px 250px 250px 250px 250px;
   justify-content: center;

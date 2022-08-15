@@ -2,27 +2,18 @@ import { React, useEffect, useState, useRef, useCallback } from 'react';
 import axios from 'axios';
 
 
-function InfiniteList(props, ref) {
-    // const [type, setType] = useState('tv');
-    const [page, setPage] = useState(1);
-    const [loadMore, setLoadMore] = useState(true);
-    const [isSwitched, setIsSwitched] = useState(false);
-    const [firstCall, setFirstCall] = useState(true);
+function InfiniteList(props) {
+    // const [isSwitched, setIsSwitched] = useState(false);
     const [isSerie, setIsSerie] = useState(true);
-    const refe = useRef();
+    const [genreId, setGenreId] = useState(props.infos.seriesGenre);
+    const [type, setType] = useState('tv');
+    const [pageNb, setPageNb] = useState(1);
+    const [loadMore, setLoadMore] = useState(true);
+    const ref = useRef();
 
-    /*
-        si switched === true et que le type 'a pas changer
-        ajouter les elemnts à la suite et su
-    */
-  
     // Attach the scroll listener to the div
     useEffect(() => {
-        const div = refe.current;
-
-        if(!isSwitched) {
-            setIsSwitched(props.infos.switched);
-        }
+        const div = ref.current;
 
         if(loadMore) {
             getData();
@@ -35,7 +26,7 @@ function InfiniteList(props, ref) {
 
     // The scroll listener
     const handleScroll = useCallback(() => {
-        const div = refe.current;
+        const div = ref.current;
         
         if(div.scrollHeight === div.scrollTop + div.clientHeight || div.scrollHeight === div.scrollTop + div.clientHeight - 0.5)
         setLoadMore(true);
@@ -43,51 +34,42 @@ function InfiniteList(props, ref) {
 
     const switchType = () => {
         console.log('clicked')
-        let newType = !isSerie;
-        setIsSerie(newType)
+        // let newType = !isSerie;
+        // setIsSerie(newType);
+
+        if(isSerie) {
+            setIsSerie(false);
+            setType('movie');
+            setGenreId(props.infos.movieGenre);
+            setPageNb(1);
+            props.setData([]);
+            setLoadMore(true);
+        } else {
+            setIsSerie(true);
+            setType('tv');
+            setGenreId(props.infos.seriesGenre);
+            setPageNb(1);
+            props.setData([]);
+            setLoadMore(true);
+        }
     }
     
     const getData = () => {
-        if(loadMore)
-        console.log('getting datas...')
-        
-        let type;
-        let pageNb;
-
-        if(props.infos.isSerie) {
-            type = 'tv';
-            // console.log('tv');
-        } else {
-            type = 'movie';
-            // console.log('movie');
-        }
-
-        if(isSwitched ) {
-            pageNb = 1;
-        } else {
-            pageNb = page;
-        }
-
+        console.log('genre :' + genreId)
         axios.get(`https://api.themoviedb.org/3/discover/${type}`, {
             params :{
                 api_key: process.env.REACT_APP_TMB_API_KEY,
                 language : 'fr-FR',
-                with_genres : props.infos.genreId,
+                with_genres : genreId,
                 page : pageNb,
             }
         })
         .then((res) => {
-            if(isSwitched) {
-                console.log('test')
-                props.setData(res.data.results);
-                setIsSwitched(false);
-            } else {
-                props.setData([...props.data, ...res.data.results]);
-                setFirstCall(false);
-            }
+            props.setData([...props.data, ...res.data.results]);
             setLoadMore(false)
-            pageNb++
-            setPage(pageNb);
+            let nextPage = pageNb;
+            nextPage++
+            setPageNb(nextPage);
         })
         .catch(err => console.log(err));
     } 
@@ -96,22 +78,31 @@ function InfiniteList(props, ref) {
         <div className='pics-display'>
             <div className='button-container'>
                 <input type='checkbox' id='switch' className='flixnet-catalog-switch catalog-checkbox'/>
-                    {isSerie ? 
+                    {isSerie ?  
                     <label htmlFor='switch' className='toogle series' onClick={switchType}>
                         <p className='toogle-series'>Séries</p>
                     </label>
                     : 
                     <label htmlFor='switch' className='toogle films' onClick={switchType}>
                         <p className='toogle-films'>Films</p> 
-                    </label> }
+                    </label> } 
             </div>
-            <div className='flixnet-catalogue-elements' ref={refe}>
+            <div className='flixnet-catalogue-elements' ref={ref}>
                 { props.data ?
                     props.data.map(show => {
                         return (
                             <div key={ show.id } className='show-container'>
-                                <img className='show-poster' alt={ show.name } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
-                                <span className='show-name'>{ show.name }</span>
+                                {isSerie ?
+                                    <>
+                                        <img className='show-poster' alt={ show.name } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
+                                        <span className='show-name'>{ show.name }</span>
+                                    </>
+                                :
+                                    <>
+                                        <img className='show-poster' alt={ show.title } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
+                                        <span className='show-name'>{ show.title }</span>
+                                    </>
+                                }
                             </div>
                         )
                     })
