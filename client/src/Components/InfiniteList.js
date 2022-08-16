@@ -9,11 +9,16 @@ function InfiniteList(props) {
     const [type, setType] = useState('tv');
     const [pageNb, setPageNb] = useState(1);
     const [loadMore, setLoadMore] = useState(true);
+    const [divClassName, setDivClassName] = useState('flixnet-catalogue-elements')
     const ref = useRef();
 
     // Attach the scroll listener to the div
     useEffect(() => {
         const div = ref.current;
+        
+        if(!props.infos.movieGenre) {
+            setDivClassName('flixnet-catalogue-elements only-series')
+        }
 
         if(loadMore) {
             getData();
@@ -77,17 +82,21 @@ function InfiniteList(props) {
     return (
         <div className='pics-display'>
             <div className='button-container'>
-                <input type='checkbox' id='switch' className='flixnet-catalog-switch catalog-checkbox'/>
-                    {isSerie ?  
-                    <label htmlFor='switch' className='toogle series' onClick={switchType}>
-                        <p className='toogle-series'>Séries</p>
-                    </label>
-                    : 
-                    <label htmlFor='switch' className='toogle films' onClick={switchType}>
-                        <p className='toogle-films'>Films</p> 
-                    </label> } 
+                    { props.infos.movieGenre ?
+                        <>
+                            <input type='checkbox' id='switch' className='flixnet-catalog-switch catalog-checkbox'/>
+                            {isSerie ?  
+                            <label htmlFor='switch' className='toogle series' onClick={switchType}>
+                                <p className='toogle-series'>Séries</p>
+                            </label>
+                            : 
+                            <label htmlFor='switch' className='toogle films' onClick={switchType}>
+                                <p className='toogle-films'>Films</p> 
+                            </label> } 
+                        </>
+                    :""}
             </div>
-            <div className='flixnet-catalogue-elements' ref={ref}>
+                <div className={divClassName} ref={ref}>
                 { props.data ?
                     props.data.map(show => {
                         return (
