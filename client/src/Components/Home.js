@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 import SearchWithGenre from './SearchWithGenre';
@@ -64,10 +64,12 @@ function Home() {
                         { popularMovies ?
                             popularMovies.map(show => {
                                 return (
-                                    <div key={ show.id } className='show-container'>
-                                        <img className='show-poster' alt={ show.title } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
-                                        <span className='show-name'>{ show.title }</span>
-                                    </div>
+                                    <Link to={`/show/${show.title}`} state={{showId: show.id, showType: 'movie'}}>
+                                        <div key={ show.id } className='show-container'>
+                                            <img className='show-poster' alt={ show.title } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
+                                            <span className='show-name'>{ show.title }</span>
+                                        </div>
+                                    </Link>
                                 )
                             })
                         : ""}
@@ -79,10 +81,12 @@ function Home() {
                         { popularTvShows ?
                             popularTvShows.map(show => {
                                 return (
-                                    <div key={ show.id } className='show-container'>
-                                        <img className='show-poster' alt={ show.name } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
-                                        <span className='show-name'>{ show.name }</span>
-                                    </div>
+                                    <Link to={`/show/${show.name}`} state={{showId: show.id, showType: 'tv'}}>
+                                        <div key={ show.id } className='show-container'>
+                                            <img className='show-poster' alt={ show.name } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
+                                            <span className='show-name'>{ show.name }</span>
+                                        </div>
+                                    </Link>
                                 )
                             })
                         : ""}

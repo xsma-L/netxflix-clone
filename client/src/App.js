@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Acceuil from './Components/Acceuil';
 import Home from './Components/Home';
 import Catalogue from "./Components/Catalogue";
+import WatchShow from "./Components/WatchShow";
+
 import './App.css';
 
 function App() {
@@ -50,6 +52,7 @@ function App() {
         <Route path='/' element={<Acceuil />} />
         <Route path='home' element={<Home />} />
         <Route path='catalogue/:genreName/:genreID' element={<Catalogue />} />
+        <Route path='show/:shownName' element={<WatchShow />} />
       </Routes>
     </BrowserRouter>
     </>

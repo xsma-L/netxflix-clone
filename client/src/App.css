@@ -358,6 +358,47 @@ main.catalogue {
   border-radius: 10px;
 }
 
+/*******************/
+
+
+/* Show */
+
+section.show-info {
+  background: black;
+  padding: 20px 25px 20px 25px;
+}
+
+.show-main {
+  display: flex;
+  color: #FFFFFF;
+}
+
+.show-img-container img {
+  height: 400px;
+}
+
+span.show-name {
+  font-size: 2em;
+}
+
+.show-date-genres {
+  display: flex;
+}
+
+.show-genres {
+  margin-left: 10px;
+}
+
+.show-genres span {
+  margin-right: 5px;
+}
+
+.circle1 {
+  height: 70px;
+  width: 70px;
+  background: red;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

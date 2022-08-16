@@ -4,6 +4,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import InfiniteList from './InfiniteList';
 
 function Catalogue(props) {
+    
     let infos = useParams();
     let genreName = infos.genreName;
     let seriesGenreId = infos.genreID;

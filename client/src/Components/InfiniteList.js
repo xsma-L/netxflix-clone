@@ -3,7 +3,6 @@ import axios from 'axios';
 
 
 function InfiniteList(props) {
-    // const [isSwitched, setIsSwitched] = useState(false);
     const [isSerie, setIsSerie] = useState(true);
     const [genreId, setGenreId] = useState(props.infos.seriesGenre);
     const [type, setType] = useState('tv');
