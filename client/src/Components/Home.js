@@ -64,8 +64,8 @@ function Home() {
                         { popularMovies ?
                             popularMovies.map(show => {
                                 return (
-                                    <Link to={`/show/${show.title}`} state={{showId: show.id, showType: 'movie'}}>
-                                        <div key={ show.id } className='show-container'>
+                                    <Link to={`/show/${show.title}`} state={{showId: show.id, showType: 'movie'}} key={ show.id }>
+                                        <div className='show-container'>
                                             <img className='show-poster' alt={ show.title } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
                                             <span className='show-name'>{ show.title }</span>
                                         </div>
@@ -81,8 +81,8 @@ function Home() {
                         { popularTvShows ?
                             popularTvShows.map(show => {
                                 return (
-                                    <Link to={`/show/${show.name}`} state={{showId: show.id, showType: 'tv'}}>
-                                        <div key={ show.id } className='show-container'>
+                                    <Link to={`/show/${show.name}`} state={{showId: show.id, showType: 'tv'}} key={ show.id }>
+                                        <div className='show-container'>
                                             <img className='show-poster' alt={ show.name } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
                                             <span className='show-name'>{ show.name }</span>
                                         </div>

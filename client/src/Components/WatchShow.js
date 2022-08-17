@@ -1,5 +1,7 @@
 import { React, useEffect, useState} from 'react';
 import { useLocation } from 'react-router-dom';
+import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
+
 import axios from 'axios';
 
 function WatchShow(props) {
@@ -10,6 +12,7 @@ function WatchShow(props) {
     const [showData, setShowData] = useState(null);
     const [showVideos, setShowVideos] = useState(null);
     const [releaseDate, setReleaseDate] = useState(null);
+    const [vote, setVote] = useState(null);
 
     // .toLocaleDateString('fr-FR', {weekday: 'long', year: 'numeric', month:'long', day:'numeric'})
 
@@ -27,6 +30,12 @@ function WatchShow(props) {
         let date = new Date(res.data.release_date);
         let frenchDate = date.toLocaleDateString('fr-FR', { year: 'numeric', month:'long', day:'numeric'});
         setReleaseDate(frenchDate);
+
+        let voteNb = res.data.vote_average * 10;
+        let n = voteNb.toFixed();
+        // parseInt(n, 10)
+        let newVote = parseInt(n, 10);
+        setVote(newVote);
       })
 
       axios.get(`https://api.themoviedb.org/3/${showType}/${showId}/videos`, {
@@ -50,25 +59,32 @@ function WatchShow(props) {
                         <img src={`https://image.tmdb.org/t/p/w500/${showData.poster_path}`} alt={showData.original_title} />
                     </div>
                     <div className='show-infos'>
-                        <span className='show-name'>{ showData.original_title }</span>
+                        <h2 className='show-name'>{ showData.original_title }</h2>
                         <div className='show-date-genres'>
                             <span className='show-date'>{ releaseDate} &#8226;</span>
                             <div className='show-genres'>
                                 {showData.genres.map(genre => {
                                     return (
-                                        <span>{ genre.name }</span>
+                                        <span key={genre.id}>{ genre.name }</span>
                                     )
                                 })}
                             </div>
                         </div>
                         <div className='vote-container'>
                             <div className='circle1'>
-                                <span className='circle2'>
-                                    
-                                </span>
+                                <CircularProgressBar percent={vote} size={70} colorSlice={'red'} colorCircle={'#6a0905'} fontColor={'#FFFFFF'} round={true} speed={80} unit={'%'} />
+                            </div>
+                            <span className='vote-label'>Nombre de votes positifs</span>
+                            <div className='teaser-button-container'>
+                                <span className='play-icon'></span>
+                                <span className='teaser-button-text'>Bande annonce</span>
                             </div>
                         </div>
                         <span className='tagline'>{ showData.tagline }</span>
+                        <div className='synopsis-title'>
+                            <span>Synopsis</span>
+                            <p className='synopsis-content'>{ showData.overview }</p>
+                        </div>
                     </div>
                 </div>
                 :""

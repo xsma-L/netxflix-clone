@@ -117,7 +117,7 @@ function InfiniteList(props) {
                 : ""}
             </div> 
         </div>
-    );
+    )
 }
 
 export default InfiniteList;

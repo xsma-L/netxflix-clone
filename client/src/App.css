@@ -377,7 +377,7 @@ section.show-info {
   height: 400px;
 }
 
-span.show-name {
+.show-info span.show-name {
   font-size: 2em;
 }
 
@@ -396,7 +396,18 @@ span.show-name {
 .circle1 {
   height: 70px;
   width: 70px;
-  background: red;
+}
+
+.vote-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 93%;
+}
+
+span.vote-label {
+  margin-left: 20px;
+  width: 32%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
