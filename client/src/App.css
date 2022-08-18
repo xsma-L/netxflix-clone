@@ -7,6 +7,11 @@
 
 /*Navbar*/
 
+a {
+  color: #FFFFFF !important;
+  text-decoration-line: none !important;
+}
+
 nav {
   height: 80px;
   display: flex;
@@ -366,8 +371,9 @@ main.catalogue {
 section.show-info {
   position: absolute;
   height: calc(100vh - 80px);
+  width: 100%;
   font-family: 'Montserrat', sans-serif;
-  background: #0b01018c;
+  background: #000000bd;
 }
 
 .filter {
@@ -433,7 +439,7 @@ h2.show-name {
 
 span.vote-label {
   margin-left: 20px;
-  width: 32%;
+  width: 20%;
 }
 
 .teaser-button-container {

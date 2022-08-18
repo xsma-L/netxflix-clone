@@ -4,7 +4,7 @@ import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 
 import axios from 'axios';
 
-function WatchShow(props) {
+function TvShow(props) {
     const params = useLocation().state;
 
     const [showId, setShowID] = useState(params.showId);
@@ -17,6 +17,7 @@ function WatchShow(props) {
     // .toLocaleDateString('fr-FR', {weekday: 'long', year: 'numeric', month:'long', day:'numeric'})
 
     useEffect(() => {
+        console.log(showId)
       axios.get(`https://api.themoviedb.org/3/${showType}/${showId}`, {
         params :{
             api_key : process.env.REACT_APP_TMB_API_KEY,
@@ -99,4 +100,4 @@ function WatchShow(props) {
     );
 }
 
-export default WatchShow;
+export default TvShow;

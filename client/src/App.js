@@ -1,10 +1,12 @@
 import ReactDOM from "react-dom/client";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Acceuil from './Components/Acceuil';
 import Home from './Components/Home';
 import Catalogue from "./Components/Catalogue";
-import WatchShow from "./Components/WatchShow";
+import Movie from "./Components/Movie";
+import TvShow from "./Components/TvShow";
 
 import './App.css';
 
@@ -52,7 +54,8 @@ function App() {
         <Route path='/' element={<Acceuil />} />
         <Route path='home' element={<Home />} />
         <Route path='catalogue/:genreName/:genreID' element={<Catalogue />} />
-        <Route path='show/:shownName' element={<WatchShow />} />
+        <Route path='movie/:shownName' element={<Movie />} />
+        <Route path='tv-show/:shownName' element={<TvShow />} />
       </Routes>
     </BrowserRouter>
     </>
