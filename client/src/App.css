@@ -37,7 +37,7 @@ img.nav-userPicture {
 }
 
 span.nav-userName {
-  font-family: 'Merriweather Sans';
+  font-family: 'Merriweather Sans', sans-serif;
 }
 
 /* .nav-menu {
@@ -364,17 +364,41 @@ main.catalogue {
 /* Show */
 
 section.show-info {
-  background: black;
+  position: absolute;
+  height: calc(100vh - 80px);
+  font-family: 'Montserrat', sans-serif;
+  background: #0b01018c;
+}
+
+.filter {
+  position: absolute;
+  height: calc(100vh - 80px);;
+  width: 100%;
   padding: 20px 25px 20px 25px;
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+h2.show-name {
+  font-family: 'Merriweather Sans', sans-serif;
 }
 
 .show-main {
+  margin-top: 30px;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
   color: #FFFFFF;
 }
 
 .show-img-container img {
   height: 400px;
+}
+
+.show-infos {
+  width: 70%;
+  font-size: 1.1em;
 }
 
 .show-info span.show-name {
@@ -383,6 +407,7 @@ section.show-info {
 
 .show-date-genres {
   display: flex;
+  margin: 15px 0 15px 0;
 }
 
 .show-genres {
@@ -400,6 +425,7 @@ section.show-info {
 
 .vote-container {
   display: flex;
+  margin: 15px 0 15px 0;
   align-items: center;
   justify-content: flex-start;
   width: 93%;
@@ -408,6 +434,40 @@ section.show-info {
 span.vote-label {
   margin-left: 20px;
   width: 32%;
+}
+
+.teaser-button-container {
+  height: 30px;
+}
+
+img.play-icon {
+  height: 65%;
+}
+
+.teaser-button-container span {
+  margin-left: 10px;
+}
+
+span.tagline {
+  color: #bbb9b9;
+  font-style: italic;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.synopsis-title {
+  margin: 20px 0;
+}
+
+.synopsis-title h4 {
+  font-family: 'Merriweather Sans', sans-serif;
+}
+
+p.synopsis-content {
+  width: 75%;
+  line-height: 30px;
+  font-size: 0.9em;
+  margin-top: 15px;
 }
 
 @media (prefers-reduced-motion: no-preference) {

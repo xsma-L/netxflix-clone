@@ -52,44 +52,50 @@ function WatchShow(props) {
     }, [])
 
     return (
-        <section className='show-info'>
-            {showData && showVideos ?
-                <div className='show-main'>
-                    <div className='show-img-container'>
-                        <img src={`https://image.tmdb.org/t/p/w500/${showData.poster_path}`} alt={showData.original_title} />
+        <>
+        {showData && showVideos ?
+            <>
+                <div className='filter' style={{backgroundImage: `url(https://image.tmdb.org/t/p/w500${showData.backdrop_path})`}}></div>
+                <section className='show-info'>
+                    <div className='show-main'>
+                        <div className='show-img-container'>
+                            <img src={`https://image.tmdb.org/t/p/w500${showData.poster_path}`} alt={showData.original_title} />
+                        </div>
+                        <div className='show-infos'>
+                            <h2 className='show-name'>{ showData.original_title }</h2>
+                            <div className='show-date-genres'>
+                                <span className='show-date'>{ releaseDate} &#8226;</span>
+                                <div className='show-genres'>
+                                    {showData.genres.map(genre => {
+                                        return (
+                                            <span key={genre.id}>{ genre.name }</span>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                            <div className='vote-container'>
+                                <div className='circle1'>
+                                    <CircularProgressBar percent={vote} size={70} colorSlice={'red'} colorCircle={'#6a0905'} fontColor={'#FFFFFF'} round={true} speed={80} unit={'%'} />
+                                </div>
+                                <span className='vote-label'>Nombre de votes positifs</span>
+                                <div className='teaser-button-container'>
+                                    <img src='/play-button.png' alt='play-button'className='play-icon' />
+                                    <span className='teaser-button-text'>Bande annonce</span>
+                                </div>
+                            </div>
+                            <span className='tagline'>{ showData.tagline }</span>
+                            <div className='synopsis-title'>
+                                <h4>Synopsis</h4>
+                                <p className='synopsis-content'>{ showData.overview }</p>
+                            </div>
+                        </div>
                     </div>
-                    <div className='show-infos'>
-                        <h2 className='show-name'>{ showData.original_title }</h2>
-                        <div className='show-date-genres'>
-                            <span className='show-date'>{ releaseDate} &#8226;</span>
-                            <div className='show-genres'>
-                                {showData.genres.map(genre => {
-                                    return (
-                                        <span key={genre.id}>{ genre.name }</span>
-                                    )
-                                })}
-                            </div>
-                        </div>
-                        <div className='vote-container'>
-                            <div className='circle1'>
-                                <CircularProgressBar percent={vote} size={70} colorSlice={'red'} colorCircle={'#6a0905'} fontColor={'#FFFFFF'} round={true} speed={80} unit={'%'} />
-                            </div>
-                            <span className='vote-label'>Nombre de votes positifs</span>
-                            <div className='teaser-button-container'>
-                                <span className='play-icon'></span>
-                                <span className='teaser-button-text'>Bande annonce</span>
-                            </div>
-                        </div>
-                        <span className='tagline'>{ showData.tagline }</span>
-                        <div className='synopsis-title'>
-                            <span>Synopsis</span>
-                            <p className='synopsis-content'>{ showData.overview }</p>
-                        </div>
-                    </div>
-                </div>
-                :""
-            }
-        </section>
+                </section>
+            </>
+            :
+            <section className='show-info'></section>    
+        }
+        </>
     );
 }
 
