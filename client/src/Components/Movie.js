@@ -55,8 +55,7 @@ function Movie(props) {
         <>
         {showData && showVideos ?
             <>
-                <div className='filter' style={{backgroundImage: `url(https://image.tmdb.org/t/p/w500${showData.backdrop_path})`}}></div>
-                <section className='show-info'>
+                <section className='show-info' style={{backgroundImage: `linear-gradient(#0000008c, #00000059), url('https://image.tmdb.org/t/p/w500${showData.backdrop_path}')`}}>
                     <div className='show-main'>
                         <div className='show-img-container'>
                             <img src={`https://image.tmdb.org/t/p/w500${showData.poster_path}`} alt={showData.original_title} />

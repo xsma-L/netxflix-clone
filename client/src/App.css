@@ -7,6 +7,10 @@
 
 /*Navbar*/
 
+#root {
+  background: #000000;
+}
+
 a {
   color: #FFFFFF !important;
   text-decoration-line: none !important;
@@ -365,15 +369,15 @@ main.catalogue {
 
 /*******************/
 
-
 /* Show */
 
 section.show-info {
-  position: absolute;
   height: calc(100vh - 80px);
   width: 100%;
   font-family: 'Montserrat', sans-serif;
-  background: #000000bd;
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .filter {
@@ -391,7 +395,7 @@ h2.show-name {
 }
 
 .show-main {
-  margin-top: 30px;
+  padding-top: 30px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -474,6 +478,57 @@ p.synopsis-content {
   line-height: 30px;
   font-size: 0.9em;
   margin-top: 15px;
+}
+
+
+/****Tv Show****/
+
+.saisons-episodes {
+  height: 100vh;
+}
+
+.saisons-container {
+  height: 90%;
+  overflow: auto;
+  padding-bottom: 40px;
+  scroll-padding-right: 10px;
+  color: #FFFFFF;
+}
+
+.saisons-container::-webkit-scrollbar {
+  width: 0.4em;
+  margin-right: 5px;
+}
+ 
+.saisons-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  width: 5px;
+}
+ 
+.saisons-container::-webkit-scrollbar-thumb {
+  background-color: #DB202C;
+  border-radius: 10px;
+}
+
+.saison-content {
+  margin-bottom: 21px;
+  padding: 20px;
+}
+
+.saison-title {
+  display: flex;
+  align-items: center;
+  margin-left: 25px;
+  width: 85%;
+  /* background: tan; */
+}
+
+img.saison-img {
+  width: 100px;
+}
+
+h5.saison-name {
+  margin-left: 25px;
 }
 
 @media (prefers-reduced-motion: no-preference) {

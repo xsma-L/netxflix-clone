@@ -2,6 +2,7 @@ import { React, useEffect, useState} from 'react';
 import { useLocation } from 'react-router-dom';
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 
+import Saison from './Saison';
 import axios from 'axios';
 
 function TvShow(props) {
@@ -14,10 +15,7 @@ function TvShow(props) {
     const [releaseDate, setReleaseDate] = useState(null);
     const [vote, setVote] = useState(null);
 
-    // .toLocaleDateString('fr-FR', {weekday: 'long', year: 'numeric', month:'long', day:'numeric'})
-
     useEffect(() => {
-        console.log(showId)
       axios.get(`https://api.themoviedb.org/3/${showType}/${showId}`, {
         params :{
             api_key : process.env.REACT_APP_TMB_API_KEY,
@@ -34,7 +32,6 @@ function TvShow(props) {
 
         let voteNb = res.data.vote_average * 10;
         let n = voteNb.toFixed();
-        // parseInt(n, 10)
         let newVote = parseInt(n, 10);
         setVote(newVote);
       })
@@ -56,14 +53,13 @@ function TvShow(props) {
         <>
         {showData && showVideos ?
             <>
-                <div className='filter' style={{backgroundImage: `url(https://image.tmdb.org/t/p/w500${showData.backdrop_path})`}}></div>
-                <section className='show-info'>
+                <section className='show-info' style={{backgroundImage: `linear-gradient(#0000008c, #00000059), url('https://image.tmdb.org/t/p/w500${showData.backdrop_path}')`}}>
                     <div className='show-main'>
                         <div className='show-img-container'>
-                            <img src={`https://image.tmdb.org/t/p/w500${showData.poster_path}`} alt={showData.original_title} />
+                            <img src={`https://image.tmdb.org/t/p/w500${showData.poster_path}`} alt={showData.name} />
                         </div>
                         <div className='show-infos'>
-                            <h2 className='show-name'>{ showData.original_title }</h2>
+                            <h2 className='show-name'>{ showData.name }</h2>
                             <div className='show-date-genres'>
                                 <span className='show-date'>{ releaseDate} &#8226;</span>
                                 <div className='show-genres'>
@@ -91,6 +87,24 @@ function TvShow(props) {
                             </div>
                         </div>
                     </div>
+                </section>
+                <section className='saisons-episodes'>
+                <h3 style={{color: '#FFFFFF'}}>Saisons & épisodes</h3>
+                <main className='saisons-container'>
+                    { showData.seasons.map(saison => {
+                        return (
+                            <div key={saison.name} className='saison-content'>
+                                <div className='saison-title'>
+                                    <img src={`https://image.tmdb.org/t/p/w500${saison.poster_path}`} className='saison-img' alt={saison.name} />
+                                    <h5 className='saison-name'>{saison.name}</h5>
+                                </div>
+                                <Saison showId={showData.id} saison={saison.season_number}/>
+                            </div>
+                        )
+                    })
+
+                    }
+                </main>
                 </section>
             </>
             :
