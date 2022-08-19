@@ -518,9 +518,21 @@ p.synopsis-content {
 .saison-title {
   display: flex;
   align-items: center;
-  margin-left: 25px;
-  width: 85%;
-  /* background: tan; */
+  margin-left: 20px;
+  width: 350px;
+  transition: all 0.7s;
+  padding: 10px;
+}
+
+.saison-title:hover {
+  cursor: pointer;
+  /* From https://css.glass */
+background: rgba(171, 171, 171, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5.2px);
+-webkit-backdrop-filter: blur(5.2px);
+border: 1px solid rgba(171, 171, 171, 0.18);
 }
 
 img.saison-img {
@@ -529,6 +541,36 @@ img.saison-img {
 
 h5.saison-name {
   margin-left: 25px;
+}
+
+/*Episodes*/
+
+.episodes-container {
+  height: 350px;
+  margin-top: 25px;
+  overflow: overlay;
+}
+
+img.episode-poster {
+  width: 230px;
+}
+
+.episode-container {
+  display: flex;
+  width: 75%;
+  margin-bottom: 50px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.episode-infos {
+  /* background: red; */
+  height: 100%;
+  width: 70%;
+}
+
+.episode-resume {
+  margin-top: 15px;
 }
 
 @media (prefers-reduced-motion: no-preference) {

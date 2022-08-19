@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import axios from 'axios';
 
 function Saison(props) {
+
+    const [episodes, setEpisodes] = useState(null);
+
     useEffect(() => {
         axios.get(`https://api.themoviedb.org/3/tv/${props.showId}/season/${props.saison}`, {
             params :{
@@ -12,13 +15,26 @@ function Saison(props) {
         })
         .catch(err => console.log(err))
         .then(res => {
-            console.log(res.data)
+            setEpisodes(res.data.episodes);
         })
     }, [])
 
     return (
-        <div>
-            
+        <div className='episodes-container'>
+            { episodes ?
+                episodes.map(episode => {
+                    return (
+                        <div key={episode.id} className='episode-container'>
+                            <img alt={episode.name} className='episode-poster' src={`https://image.tmdb.org/t/p/w500/${episode.still_path}`} />
+                            <div className='episode-infos'>
+                                <h5 className='episode-title'>{episode.name}</h5>
+                                <p className='episode-resume'>{episode.overview}</p>
+                            </div>
+                        </div>
+                    )
+                })
+                :""
+            }
         </div>
     );
 }
