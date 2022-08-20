@@ -20,7 +20,7 @@ function Saison(props) {
     }, [])
 
     return (
-        <div className='episodes-container'>
+        <div className='episodes-container' style={{display: 'none'}}>
             { episodes ?
                 episodes.map(episode => {
                     return (

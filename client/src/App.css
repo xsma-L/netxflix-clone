@@ -104,6 +104,7 @@ span.nav-userName {
 .card-accountImage {
   height: 200px;
   width: 200px;
+  transition: all 0.5s;
 }
 
 .card-accountImage:hover {
@@ -499,10 +500,19 @@ p.synopsis-content {
 
 .saisons-container {
   height: 90%;
+  width: 85%;
+  margin: auto;
   overflow: auto;
   padding-bottom: 40px;
   scroll-padding-right: 10px;
   color: #FFFFFF;
+  /* From https://css.glass */
+  background: rgba(194, 6, 6, 0.27);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(194, 6, 6, 0.3);
 }
 
 .saisons-container::-webkit-scrollbar {
@@ -516,7 +526,7 @@ p.synopsis-content {
 }
  
 .saisons-container::-webkit-scrollbar-thumb {
-  background-color: #DB202C;
+  background-color: #db3932;
   border-radius: 10px;
 }
 
@@ -536,13 +546,22 @@ p.synopsis-content {
 
 .saison-title:hover {
   cursor: pointer;
-  /* From https://css.glass */
-background: rgba(171, 171, 171, 0.2);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5.2px);
--webkit-backdrop-filter: blur(5.2px);
-border: 1px solid rgba(171, 171, 171, 0.18);
+  background: rgba(171, 171, 171, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.2px);
+  -webkit-backdrop-filter: blur(5.2px);
+  border: 1px solid rgba(171, 171, 171, 0.18);
+}
+
+.saison-title:active {
+  cursor: pointer;
+  background: rgba(171, 171, 171, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.2px);
+  -webkit-backdrop-filter: blur(5.2px);
+  border: 1px solid rgba(171, 171, 171, 0.18);
 }
 
 img.saison-img {
@@ -556,6 +575,8 @@ h5.saison-name {
 /*Episodes*/
 
 .episodes-container {
+  /* display: none; */
+  transition: all 0.7s;
   height: 350px;
   margin-top: 25px;
   padding-top: 20px;

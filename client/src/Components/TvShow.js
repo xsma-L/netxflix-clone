@@ -49,6 +49,27 @@ function TvShow(props) {
       })
     }, [])
 
+    const saisonClicked = (e) => {
+        let element = e.target;
+
+        let elementContainer
+
+        if(element.className === 'saison-title') {
+            elementContainer = element.parentElement;
+        } else {
+            elementContainer = element.parentElement.parentElement
+        }
+
+        let episodesContainer = elementContainer.children[1];
+
+
+        if(episodesContainer.style.display === 'none') {
+            episodesContainer.style.display = 'block';
+        } else {
+            episodesContainer.style.display = 'none';
+        }
+    }
+
     return (
         <>
         {showData && showVideos ?
@@ -94,7 +115,7 @@ function TvShow(props) {
                     { showData.seasons.map(saison => {
                         return (
                             <div key={saison.name} className='saison-content'>
-                                <div className='saison-title'>
+                                <div className='saison-title' onClick={saisonClicked}>
                                     <img src={`https://image.tmdb.org/t/p/w500${saison.poster_path}`} className='saison-img' alt={saison.name} />
                                     <h5 className='saison-name'>{saison.name}</h5>
                                 </div>
