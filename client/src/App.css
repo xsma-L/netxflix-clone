@@ -16,6 +16,16 @@ a {
   text-decoration-line: none !important;
 }
 
+.show-container a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a:hover {
+  color: #000000 !important;
+}
+
 nav {
   height: 80px;
   display: flex;
@@ -548,7 +558,28 @@ h5.saison-name {
 .episodes-container {
   height: 350px;
   margin-top: 25px;
+  padding-top: 20px;
   overflow: overlay;
+  background: rgba(141, 141, 141, 0.13);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.2px);
+  -webkit-backdrop-filter: blur(5.2px);
+}
+
+.episodes-container::-webkit-scrollbar {
+  width: 0.4em;
+  margin-right: 5px;
+}
+ 
+.episodes-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  width: 5px;
+}
+ 
+.episodes-container::-webkit-scrollbar-thumb {
+  background-color: #FFFFFF;
+  border-radius: 10px;
 }
 
 img.episode-poster {

@@ -1,4 +1,5 @@
 import { React, useEffect, useState, useRef, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -37,9 +38,6 @@ function InfiniteList(props) {
     }, [])
 
     const switchType = () => {
-        console.log('clicked')
-        // let newType = !isSerie;
-        // setIsSerie(newType);
 
         if(isSerie) {
             setIsSerie(false);
@@ -59,7 +57,6 @@ function InfiniteList(props) {
     }
     
     const getData = () => {
-        console.log('genre :' + genreId)
         axios.get(`https://api.themoviedb.org/3/discover/${type}`, {
             params :{
                 api_key: process.env.REACT_APP_TMB_API_KEY,
@@ -101,15 +98,15 @@ function InfiniteList(props) {
                         return (
                             <div key={ show.id } className='show-container'>
                                 {isSerie ?
-                                    <>
+                                    <Link to={`/tv-show/${show.name}`} state={{showId: show.id, showType: 'tv'}}>
                                         <img className='show-poster' alt={ show.name } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
                                         <span className='show-name'>{ show.name }</span>
-                                    </>
+                                    </Link>
                                 :
-                                    <>
+                                    <Link to={`/movie/${show.title}`} state={{showId: show.id, showType: 'movie'}} key={ show.id }>
                                         <img className='show-poster' alt={ show.title } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
                                         <span className='show-name'>{ show.title }</span>
-                                    </>
+                                    </Link>
                                 }
                             </div>
                         )
@@ -117,7 +114,7 @@ function InfiniteList(props) {
                 : ""}
             </div> 
         </div>
-    )
+    );
 }
 
 export default InfiniteList;
