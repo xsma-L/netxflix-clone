@@ -13,9 +13,6 @@ function Home() {
     const user = location.state;
     
     useEffect(() => {
-        // if(user) 
-        // localStorage.setItem('userName', user.name);
-        // localStorage.setItem('userPicture', user.picture);
 
         axios.get('https://api.themoviedb.org/3/movie/popular/', {
             params : {
