@@ -116,7 +116,11 @@ function TvShow(props) {
                         return (
                             <div key={saison.name} className='saison-content'>
                                 <div className='saison-title' onClick={saisonClicked}>
-                                    <img src={`https://image.tmdb.org/t/p/w500${saison.poster_path}`} className='saison-img' alt={saison.name} />
+                                    { saison.poster_path !== null ?
+                                        <img src={`https://image.tmdb.org/t/p/w500${saison.poster_path}`} className='saison-img' alt={saison.name} />
+                                        :
+                                        <span className='saison-img no-pic'>F</span>
+                                    }
                                     <h5 className='saison-name'>{saison.name}</h5>
                                 </div>
                                 <Episode showId={showData.id} saison={saison.season_number} displayed={false}/>

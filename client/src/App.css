@@ -568,6 +568,20 @@ img.saison-img {
   width: 100px;
 }
 
+span.saison-img.no-pic {
+  width: 100px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 40px;
+  font-weight: bold;
+  color: #DB202C;
+  background: #000000;
+  align-items: center;
+}
+
 h5.saison-name {
   margin-left: 25px;
 }
@@ -605,6 +619,21 @@ h5.saison-name {
 
 img.episode-poster {
   width: 230px;
+}
+
+span.episode-poster.no-pic {
+  width: 230px;
+  height: 129px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: black;
+  font-size: 40px;
+  font-family: 'Bebas Neue', cursive;
+  color: #DB202C;
+  letter-spacing: 4px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .episode-container {

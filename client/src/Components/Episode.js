@@ -41,7 +41,11 @@ function Episode(props) {
                 episodes.map(episode => {
                     return (
                         <div key={episode.id} className='episode-container'>
-                            <img alt={episode.name} className='episode-poster' src={`https://image.tmdb.org/t/p/w500/${episode.still_path}`} />
+                            { episode.still_path !== null ?
+                                <img alt={episode.name} className='episode-poster' src={`https://image.tmdb.org/t/p/w500/${episode.still_path}`} />
+                                :
+                                <span className='episode-poster no-pic'>FLIXNET</span>
+                            }
                             <div className='episode-infos'>
                                 <h5 className='episode-title'>{episode.name}</h5>
                                 <p className='episode-resume'>{episode.overview}</p>
