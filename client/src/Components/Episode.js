@@ -10,19 +10,30 @@ function Episode(props) {
 
     useEffect(() => {
         const divElement = ref.current
-        if(divElement.style.display === 'block')
-        
-        axios.get(`https://api.themoviedb.org/3/tv/${props.showId}/season/${props.saison}`, {
-            params :{
-                api_key : process.env.REACT_APP_TMB_API_KEY,
-                language : 'fr-FR',
-            } 
-        })
-        .catch(err => console.log(err))
-        .then(res => {
-            setEpisodes(res.data.episodes);
-        })
-    }, [ref.current])
+
+        var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutationRecord) {
+                if(divElement.style.display === 'block') {
+                    axios.get(`https://api.themoviedb.org/3/tv/${props.showId}/season/${props.saison}`, {
+                    params :{
+                        api_key : process.env.REACT_APP_TMB_API_KEY,
+                        language : 'fr-FR',
+                    } 
+                    })
+                    .catch(err => console.log(err))
+                    .then(res => {
+                        setEpisodes(res.data.episodes);
+                    })
+                }
+
+            });    
+          });
+                    
+          observer.observe(divElement, { 
+            attributes: true, 
+            attributeFilter: ['style'] 
+          });
+    }, [])
 
     return (
         <div className='episodes-container' style={{display: 'none'}} ref={ref}>
