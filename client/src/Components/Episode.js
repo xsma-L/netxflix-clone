@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 import axios from 'axios';
 
-function Saison(props) {
+function Episode(props) {
 
     const [episodes, setEpisodes] = useState(null);
+    const [call, setCall] = useState(false);
+    const ref = useRef();
 
     useEffect(() => {
+        const divElement = ref.current
+        if(divElement.style.display === 'block')
+        
         axios.get(`https://api.themoviedb.org/3/tv/${props.showId}/season/${props.saison}`, {
             params :{
                 api_key : process.env.REACT_APP_TMB_API_KEY,
@@ -17,10 +22,10 @@ function Saison(props) {
         .then(res => {
             setEpisodes(res.data.episodes);
         })
-    }, [])
+    }, [ref.current])
 
     return (
-        <div className='episodes-container' style={{display: 'none'}}>
+        <div className='episodes-container' style={{display: 'none'}} ref={ref}>
             { episodes ?
                 episodes.map(episode => {
                     return (
@@ -39,4 +44,4 @@ function Saison(props) {
     );
 }
 
-export default Saison;
+export default Episode;

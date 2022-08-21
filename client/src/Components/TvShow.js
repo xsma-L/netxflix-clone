@@ -2,7 +2,7 @@ import { React, useEffect, useState} from 'react';
 import { useLocation } from 'react-router-dom';
 import { CircularProgressBar } from "@tomik23/react-circular-progress-bar";
 
-import Saison from './Saison';
+import Episode from './Episode';
 import axios from 'axios';
 
 function TvShow(props) {
@@ -119,7 +119,7 @@ function TvShow(props) {
                                     <img src={`https://image.tmdb.org/t/p/w500${saison.poster_path}`} className='saison-img' alt={saison.name} />
                                     <h5 className='saison-name'>{saison.name}</h5>
                                 </div>
-                                <Saison showId={showData.id} saison={saison.season_number}/>
+                                <Episode showId={showData.id} saison={saison.season_number} displayed={false}/>
                             </div>
                         )
                     })
