@@ -16,25 +16,6 @@ function App() {
   const [userName, setUserName] = useState(null);
   const [userPicture, setUserPicture] = useState(null);
 
-  
-  // useEffect(() => {
-  //   window.addEventListener('storage', checkUserData);
-    
-  //   return () => {
-  //     window.removeEventListener('storage', checkUserData)
-  //   }
-  // }, []);
-  
-  // const checkUserData = () => {
-  //   console.log('userFunc')
-  //   let user = localStorage.getItem('userName');
-  //   if (user) {
-  //     let userPic = localStorage.getItem('userPicture');
-  //     setUserName(user);
-  //     setUserPicture(userPic);
-  //   }
-  // }
-
   return (
     <>
     <Helmet>
