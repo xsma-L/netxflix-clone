@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom/client";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 import Acceuil from './Components/Acceuil';
 import Home from './Components/Home';
@@ -15,29 +16,32 @@ function App() {
   const [userName, setUserName] = useState(null);
   const [userPicture, setUserPicture] = useState(null);
 
-  // localStorage.clear();
   
-  useEffect(() => {
-    // console.log(window.addEventListener)
-    window.addEventListener('storage', checkUserData);
+  // useEffect(() => {
+  //   window.addEventListener('storage', checkUserData);
     
-    return () => {
-      window.removeEventListener('storage', checkUserData)
-    }
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('storage', checkUserData)
+  //   }
+  // }, []);
   
-  const checkUserData = () => {
-    console.log('userFunc')
-    let user = localStorage.getItem('userName');
-    if (user) {
-      let userPic = localStorage.getItem('userPicture');
-      setUserName(user);
-      setUserPicture(userPic);
-    }
-  }
+  // const checkUserData = () => {
+  //   console.log('userFunc')
+  //   let user = localStorage.getItem('userName');
+  //   if (user) {
+  //     let userPic = localStorage.getItem('userPicture');
+  //     setUserName(user);
+  //     setUserPicture(userPic);
+  //   }
+  // }
 
   return (
     <>
+    <Helmet>
+        <title>Flixnet netflix sans streaming !</title>
+        <meta name="flixnet" content="Flixnet netflix sans streaming !" />
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+      </Helmet>
     <nav>
       <div className="logo-container">
         <span className="logo">FLIXNET</span>
@@ -49,6 +53,7 @@ function App() {
         </div>
       : ''}
     </nav>
+
       <BrowserRouter>
       <Routes>
         <Route path='/' element={<Acceuil />} />

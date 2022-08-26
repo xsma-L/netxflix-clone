@@ -33,7 +33,6 @@ function Movie(props) {
 
         let voteNb = res.data.vote_average * 10;
         let n = voteNb.toFixed();
-        // parseInt(n, 10)
         let newVote = parseInt(n, 10);
         setVote(newVote);
       })
