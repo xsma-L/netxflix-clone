@@ -1,12 +1,13 @@
 import {React, useEffect, useState} from 'react';
 import { Link, useLocation } from 'react-router-dom';
-// import { LazyLoadComponent, trackWindowScroll } from 'react-lazy-load-image-component';
+// import { LazyLoadComponent } from 'react-lazy-load-image-component';
+import LazyLoad from 'react-lazy-load';
 import axios from 'axios';
 
 import SearchWithGenre from './SearchWithGenre';
 import ShowScroll from './ShowScroll.js';
 
-function Home(scrollPosition) {
+function Home() {
     const [popularMovies, setPoularMovies] = useState([]);
     const [popularTvShows, setPopularTvShows] = useState([]);
     const [moviesGenre, setMoviesGenres] = useState([]);
@@ -19,7 +20,6 @@ function Home(scrollPosition) {
     const user = location.state;
     
     useEffect(() => {
-
         axios.get('https://api.themoviedb.org/3/movie/popular/', {
             params : {
                 api_key: process.env.REACT_APP_TMB_API_KEY,
@@ -100,9 +100,9 @@ function Home(scrollPosition) {
                 { moviesGenre.length > 0 && tvGenre.length > 0 ?
                     tvGenre.map(genre => {
                         return (
-                            // <LazyLoadComponent key={genre.id} scrollPosition={scrollPosition}>
-                                <SearchWithGenre key={genre.id} idGenre={genre.id} genreName={genre.name} limit={10} genre={genre} moviesGenre={moviesGenre} />
-                            // </LazyLoadComponent>
+                            <LazyLoad key={genre.id} height={400} className='lazyload-resopnsive'>
+                                <SearchWithGenre idGenre={genre.id} genreName={genre.name} limit={10} genre={genre} moviesGenre={moviesGenre}/>
+                            </LazyLoad>
                         )
                     })
                 : ""}

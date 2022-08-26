@@ -1,10 +1,10 @@
 import {React, useState, useEffect} from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+// import { LazyLoadImage, trackWindowScroll } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
-import 'react-lazy-load-image-component/src/effects/opacity.css';
+// import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 function SearchWithGenre(props) {
 
@@ -13,6 +13,7 @@ function SearchWithGenre(props) {
     const moviesGenre = props.moviesGenre;
     
     useEffect(() => {
+
         if(datas.length === 0) {
             if(props.idGenre === 10762 || props.idGenre === 10763 || props.idGenre === 10764 || props.idGenre === 10766 || props.idGenre === 10766 || props.idGenre === 10767) {
                 axios.get('https://api.themoviedb.org/3/discover/tv', {
@@ -108,7 +109,7 @@ function SearchWithGenre(props) {
     
     
     return (
-        <div>
+        <>
             <div className='popular-tvShow'>
                 <h3>{props.genreName}</h3>
                 <div className='discover-content'>
@@ -118,12 +119,12 @@ function SearchWithGenre(props) {
                                 <div key={ show.id } className='show-container'>
                                     {show.name ?
                                             <Link to={`/tv-show/${show.name}`} state={{showId: show.id, showType: 'tv'}} key={ show.id }>
-                                                <LazyLoadImage className='show-poster' alt={ show.name } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} effect='opacity' />                                                   {/* <img className='show-poster'  /> */}
+                                                <img className='show-poster' alt={ show.name } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} effect='opacity' />                                                   {/* <img className='show-poster'  /> */}
                                                 <span className='show-name'>{ show.name }</span>
                                             </Link>
                                     :  
                                             <Link to={`/movie/${show.title}`} state={{showId: show.id, showType: 'movie'}} key={ show.id }>
-                                                <LazyLoadImage className='show-poster' alt={ show.title } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} effect='opacity'/>
+                                                <img className='show-poster' alt={ show.title } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} effect='opacity'/>
                                                     {/* <img className='show-poster' alt={ show.title } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} /> */}
                                                 {/* </LazyLoadImage> */}
                                                 <span className='show-name'>{ show.title }</span>
@@ -152,7 +153,7 @@ function SearchWithGenre(props) {
                     </div>
                 </div>
             </div>            
-        </div>
+        </>
     );
 }
 
