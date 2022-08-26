@@ -1,14 +1,20 @@
 import {React, useEffect, useState} from 'react';
 import { Link, useLocation } from 'react-router-dom';
+// import { LazyLoadComponent, trackWindowScroll } from 'react-lazy-load-image-component';
 import axios from 'axios';
 
 import SearchWithGenre from './SearchWithGenre';
+import ShowScroll from './ShowScroll.js';
 
-function Home() {
+function Home(scrollPosition) {
     const [popularMovies, setPoularMovies] = useState([]);
     const [popularTvShows, setPopularTvShows] = useState([]);
     const [moviesGenre, setMoviesGenres] = useState([]);
     const [tvGenre, setTvGenres] = useState([]);
+    
+    // Categories elements (ShowScroll);
+    const [datas, setDatas] = useState([]);
+
     const location = useLocation();
     const user = location.state;
     
@@ -94,7 +100,9 @@ function Home() {
                 { moviesGenre.length > 0 && tvGenre.length > 0 ?
                     tvGenre.map(genre => {
                         return (
-                            <SearchWithGenre key={genre.id} idGenre={genre.id} genreName={genre.name} limit={10} genre={genre} moviesGenre={moviesGenre}/>
+                            // <LazyLoadComponent key={genre.id} scrollPosition={scrollPosition}>
+                                <SearchWithGenre key={genre.id} idGenre={genre.id} genreName={genre.name} limit={10} genre={genre} moviesGenre={moviesGenre} />
+                            // </LazyLoadComponent>
                         )
                     })
                 : ""}

@@ -1,6 +1,10 @@
 import {React, useState, useEffect} from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
+
 import axios from 'axios';
+
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 function SearchWithGenre(props) {
 
@@ -113,15 +117,17 @@ function SearchWithGenre(props) {
                             return (
                                 <div key={ show.id } className='show-container'>
                                     {show.name ?
-                                        <Link to={`/tv-show/${show.name}`} state={{showId: show.id, showType: 'tv'}} key={ show.id }>
-                                            <img className='show-poster' alt={ show.name } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
-                                            <span className='show-name'>{ show.name }</span>
-                                        </Link>
+                                            <Link to={`/tv-show/${show.name}`} state={{showId: show.id, showType: 'tv'}} key={ show.id }>
+                                                <LazyLoadImage className='show-poster' alt={ show.name } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} effect='opacity' />                                                   {/* <img className='show-poster'  /> */}
+                                                <span className='show-name'>{ show.name }</span>
+                                            </Link>
                                     :  
-                                        <Link to={`/movie/${show.title}`} state={{showId: show.id, showType: 'movie'}} key={ show.id }>
-                                            <img className='show-poster' alt={ show.title } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
-                                            <span className='show-name'>{ show.title }</span>
-                                        </Link>
+                                            <Link to={`/movie/${show.title}`} state={{showId: show.id, showType: 'movie'}} key={ show.id }>
+                                                <LazyLoadImage className='show-poster' alt={ show.title } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} effect='opacity'/>
+                                                    {/* <img className='show-poster' alt={ show.title } src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} /> */}
+                                                {/* </LazyLoadImage> */}
+                                                <span className='show-name'>{ show.title }</span>
+                                            </Link>
                                     }
                                 </div>
                             )
