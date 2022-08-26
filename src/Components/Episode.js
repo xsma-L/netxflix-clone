@@ -5,7 +5,7 @@ import axios from 'axios';
 function Episode(props) {
 
     const [episodes, setEpisodes] = useState(null);
-    const [call, setCall] = useState(false);
+    // const [call, setCall] = useState(false);
     const ref = useRef();
 
     useEffect(() => {

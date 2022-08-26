@@ -70,6 +70,7 @@ function SearchWithGenre(props) {
                         setMovieGenreId(genre.id);
                     }
                 })
+                break;
             default :
             moviesGenre.map(genre => {
                 if(genre.name === genreName) {
