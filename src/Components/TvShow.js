@@ -26,7 +26,7 @@ function TvShow(props) {
       .catch((err) => console.log(err))
       .then((res) => {
         setShowData(res.data);
-        let date = new Date(res.data.release_date);
+        let date = new Date(res.data.first_air_date);
         let frenchDate = date.toLocaleDateString('fr-FR', { year: 'numeric', month:'long', day:'numeric'});
         setReleaseDate(frenchDate);
 
@@ -74,7 +74,7 @@ function TvShow(props) {
         <>
         {showData && showVideos ?
             <>
-                <section className='show-info' style={{backgroundImage: `linear-gradient(#0000008c, #00000059), url('https://image.tmdb.org/t/p/w500${showData.backdrop_path}')`}}>
+                <section className='show-info' style={{backgroundImage: `linear-gradient(#000000c7, #000000c7), url('https://image.tmdb.org/t/p/w500${showData.backdrop_path}')`}}>
                     <div className='show-main'>
                         <div className='show-img-container'>
                             <img src={`https://image.tmdb.org/t/p/w500${showData.poster_path}`} alt={showData.name} />
@@ -96,10 +96,13 @@ function TvShow(props) {
                                     <CircularProgressBar percent={vote} size={70} colorSlice={'red'} colorCircle={'#6a0905'} fontColor={'#FFFFFF'} round={true} speed={80} unit={'%'} />
                                 </div>
                                 <span className='vote-label'>Nombre de votes positifs</span>
-                                <div className='teaser-button-container'>
-                                    <img src='/play-button.png' alt='play-button'className='play-icon' />
-                                    <span className='teaser-button-text'>Bande annonce</span>
-                                </div>
+                                    {showVideos.length > 0 ?
+                                        <div className='teaser-button-container'>
+                                            <img src='/play-button.png' alt='play-button'className='play-icon' />
+                                            <span className='teaser-button-text'>Bande annonce</span>
+                                        </div>
+                                        :""
+                                    }
                             </div>
                             <span className='tagline'>{ showData.tagline }</span>
                             <div className='synopsis-title'>

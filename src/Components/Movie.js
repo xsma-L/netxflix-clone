@@ -10,11 +10,11 @@ function Movie(props) {
     const [showId, setShowID] = useState(params.showId);
     const [showType, setShowType] = useState(params.showType);
     const [showData, setShowData] = useState(null);
-    const [showVideos, setShowVideos] = useState(null);
+    const [movieVideo, setMovieVideo] = useState(null);
     const [releaseDate, setReleaseDate] = useState(null);
     const [vote, setVote] = useState(null);
-
-    // .toLocaleDateString('fr-FR', {weekday: 'long', year: 'numeric', month:'long', day:'numeric'})
+    const [modal, setModal] = useState(false);
+    const [videoLoading, setVideoLoading] = useState(true);
 
     useEffect(() => {
       axios.get(`https://api.themoviedb.org/3/${showType}/${showId}`, {
@@ -41,20 +41,48 @@ function Movie(props) {
         params :{
             api_key : process.env.REACT_APP_TMB_API_KEY,
             language : 'fr-FR',
-
         }
       })
       .catch((err) => console.log(err))
       .then((res) => {
-        setShowVideos(res.data.results);
+        if(res.data.results.length > 0)
+        setMovieVideo(res.data.results[0]);
       })
     }, [])
 
+    const openModal = () => {
+        setModal(!modal);
+    };
+
+    const spinner = () => {
+        setVideoLoading(!videoLoading);
+    };
+
     return (
         <>
-        {showData && showVideos ?
+        {showData && movieVideo ?
             <>
-                <section className='show-info' style={{backgroundImage: `linear-gradient(#0000008c, #00000059), url('https://image.tmdb.org/t/p/w500${showData.backdrop_path}')`}}>
+                <section className='show-info' style={{backgroundImage: `linear-gradient(#000000c7, #000000c7), url('https://image.tmdb.org/t/p/w500${showData.backdrop_path}')`}}>
+                    {modal ?
+                        <section className='modal_bg'>
+                            <div className='modal_align'>
+                                <div className='modal_content' open={modal}>
+                                    <span className='close_button' onClick={openModal}>X</span>
+                                    <div className='modal_video-align'>
+                                        {videoLoading ?
+                                            <div className='modal-spinner'>
+                                            </div>
+                                            :""
+                                        }
+                                        <iframe className='modal_video-style' onLoad={spinner} loading="lazy" width='800' height='500' src={`https://www.youtube.com/embed/${movieVideo.key}`} title={movieVideo.name} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
+                                        </iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        :""
+
+                    }
                     <div className='show-main'>
                         <div className='show-img-container'>
                             <img src={`https://image.tmdb.org/t/p/w500${showData.poster_path}`} alt={showData.original_title} />
@@ -76,10 +104,13 @@ function Movie(props) {
                                     <CircularProgressBar percent={vote} size={70} colorSlice={'red'} colorCircle={'#6a0905'} fontColor={'#FFFFFF'} round={true} speed={80} unit={'%'} />
                                 </div>
                                 <span className='vote-label'>Nombre de votes positifs</span>
-                                <div className='teaser-button-container'>
-                                    <img src='/play-button.png' alt='play-button'className='play-icon' />
-                                    <span className='teaser-button-text'>Bande annonce</span>
-                                </div>
+                                    {movieVideo ?
+                                        <div className='teaser-button-container' onClick={openModal}>
+                                            <img src='/play-button.png' alt='play-button'className='play-icon' />
+                                            <span className='teaser-button-text'>Bande annonce</span>
+                                        </div>
+                                        :""
+                                    }
                             </div>
                             <span className='tagline'>{ showData.tagline }</span>
                             <div className='synopsis-title'>

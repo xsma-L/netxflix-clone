@@ -461,6 +461,10 @@ span.vote-label {
   height: 30px;
 }
 
+.teaser-button-container:hover {
+  cursor: pointer;
+}
+
 img.play-icon {
   height: 65%;
 }
@@ -652,6 +656,45 @@ span.episode-poster.no-pic {
 
 .episode-resume {
   margin-top: 15px;
+}
+
+/*Modal*/
+
+section.modal_bg {
+  position: absolute;
+  height: calc(100vh - 80px);
+  width: 100%;
+  background: #000000f0;
+  transition: all 2s;
+}
+
+span.close_button {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  padding: 10px;
+  border-radius: 50%;
+  background: #b1b1b1;
+  right: 5%;
+  color: #000000;
+  font-size: 25px;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+}
+
+span.close_button:hover {
+  cursor: pointer;
+  color: #FFFFFF;
+}
+
+iframe.modal_video-style {
+  margin: auto;
+}
+
+.modal_video-align {
+  display: flex;
 }
 
 @media (prefers-reduced-motion: no-preference) {

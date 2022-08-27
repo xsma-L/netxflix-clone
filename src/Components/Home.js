@@ -1,11 +1,9 @@
 import {React, useEffect, useState} from 'react';
 import { Link, useLocation } from 'react-router-dom';
-// import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import LazyLoad from 'react-lazy-load';
 import axios from 'axios';
 
 import SearchWithGenre from './SearchWithGenre';
-import ShowScroll from './ShowScroll.js';
 
 function Home() {
     const [popularMovies, setPoularMovies] = useState([]);
@@ -13,11 +11,9 @@ function Home() {
     const [moviesGenre, setMoviesGenres] = useState([]);
     const [tvGenre, setTvGenres] = useState([]);
     
-    // Categories elements (ShowScroll);
     const [datas, setDatas] = useState([]);
 
     const location = useLocation();
-    const user = location.state;
     
     useEffect(() => {
         axios.get('https://api.themoviedb.org/3/movie/popular/', {
