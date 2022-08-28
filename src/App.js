@@ -22,6 +22,8 @@ function App() {
         <title>Flixnet netflix sans streaming !</title>
         <meta name="flixnet" content="Flixnet netflix sans streaming !" />
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </Helmet>
     <nav>
       <div className="logo-container">

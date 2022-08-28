@@ -6,6 +6,7 @@
 }
 
 body {
+  background-color: #07070f;
   width: 100%;
 }
 
@@ -927,7 +928,7 @@ iframe.modal_video-style {
   }
 
   .saisons-container {
-    margin-top: 20px;
+    margin-top: 10px;
     width: 100%;
   }
 
@@ -994,14 +995,14 @@ img.episode-poster {
 }
 
 .App-header {
-  background-color: #DB202C;
+  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: black;
+  color: white;
 }
 
 .App-link {
