@@ -82,7 +82,8 @@ function Movie(props) {
                         </section>
                         :""
                     }
-                    <div className='show-main'>
+                    { !modal ?
+                        <div className='show-main'>
                         <div className='show-img-container'>
                             <img src={`https://image.tmdb.org/t/p/w500${showData.poster_path}`} alt={showData.original_title} />
                         </div>
@@ -119,7 +120,10 @@ function Movie(props) {
                                 <p className='synopsis-content'>{ showData.overview }</p>
                             </div>
                         </div>
-                    </div>
+                        </div>
+                    : ""
+                    }
+                    
                 </section>
             </>
             :

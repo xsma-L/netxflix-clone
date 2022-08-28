@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+body {
+  width: 100%;
+}
+
 /*Navbar*/
 
 #root {
@@ -87,17 +91,22 @@ span.nav-userName {
 .accounts {
   padding: 20px;
   display: grid;
-  grid-template-columns: 220px 220px;
+  grid-template-columns: 40% 40%;
+  height: -moz-fit-content;
   height: fit-content;
+  width: -moz-fit-content;
   width: fit-content;
+  align-items: center;
+  justify-items: center;
+  justify-content: space-between;
 }
 
 .accountCard {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 240px;
-  width: 200px;
+  height: auto;
+  /* width: 200px; */
   text-align: center;
 }
 
@@ -460,9 +469,14 @@ h2.show-name {
   width: 93%;
 }
 
+.vote-content {
+  display: flex;
+  align-items: center;
+}
+
 span.vote-label {
   margin-left: 20px;
-  width: 20%;
+  width: 50%;
 }
 
 .teaser-button-container {
@@ -707,14 +721,38 @@ iframe.modal_video-style {
 
 /*Laptop CSS*/
 
-@media (max-width: 1199.98px) { 
-    .flixnet-catalogue-elements {
-      grid-template-columns: 20% 20% 20% 20% 20%;
-    } 
+@media (max-width: 1199.98px) {
+  /*Movie*/
+  section.modal_bg {
+    height: 100vh;
+  }
 
-    #flixnet-catalogue img.show-poster {
-      width: 80%;
-    }
+  iframe.modal_video-style {
+    width: 80%;
+  }
+
+  section.show-info {
+    height: 100%;
+  }
+
+  .show-infos {
+    width: 60%;
+    font-size: 1.1em;
+  }
+
+  p.synopsis-content {
+    width: 85%;
+  }
+  
+  /*Catalogue*/
+
+  .flixnet-catalogue-elements {
+    grid-template-columns: 20% 20% 20% 20% 20%;
+  } 
+
+  #flixnet-catalogue img.show-poster {
+    width: 80%;
+  }
 }
 
 @media (max-width: 991.98px) { 
@@ -727,19 +765,53 @@ iframe.modal_video-style {
   #flixnet-catalogue img.show-poster {
     width: 80%;
   }
+
+  /*Movie*/
+  section.modal_bg {
+    height: 100vh;
+  }
+
+  iframe.modal_video-style {
+    width: 80%;
+  }
+
+  .show-main {
+    align-items: unset;
+  }
+
+  .show-img-container img {
+    height: 250px;
+  }
+
+  section.show-info {
+    height: 100%;
+  }
+
+  .show-infos {
+    width: 60%;
+    font-size: 1.1em;
+  }
+
+  p.synopsis-content {
+    width: 95%;
+  }
+  
 }
 
 @media (max-width: 767.98px) {
-  /*Catalogue*/
+   /*Connexion*/
 
-  /* #flixnet-catalogue .title-button-container {
-    align-items: center;
+  .accounts {
+    width: 89%;
   }
 
-  .flixnet-catalogue h1 {
-    height: auto;
-    font-size: 17px;
-  } */
+  .card-accountImage {
+    height: unset;
+    width: 100%;
+    transition: all 0.5s;
+  }
+
+  /*Catalogue*/
 
   #flixnet-catalogue span.show-name{
     font-size: 12px;
@@ -760,9 +832,101 @@ iframe.modal_video-style {
   #flixnet-catalogue img.show-poster {
     width: 90%;
   }
+
+  /*Movie*/
+
+  section.show-info {
+    height: 100%;
+    background-image: none !important;
+    background: black;
+  }
+
+  span.vote-label {
+    margin-left: 10px;
+    font-size: 13px;
+  }
+
+  .teaser-button-container {
+    width: 45%;
+    font-size: 13px;
+  }
+
 }
 
 @media (max-width: 575.98px) {
+  /*Movie*/
+
+  span.close_button {
+    top: 15px;
+  }
+
+  .modal_align {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .show-main {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: #FFFFFF;
+  }
+
+  section.show-info {
+    height: 100%;
+    background-image: none !important;
+    background: black;
+  }
+
+  .teaser-button-container {
+    display: flex;
+    align-items: center;
+    width: 45%;
+    font-size: 13px;
+  }
+
+  .show-infos {
+    width: 100%;
+    padding: 40px;
+  }
+  
+  .show-date-genres {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  .show-genres {
+    margin-left: unset;
+  }
+
+  span.vote-label {
+    margin-left: 10px;
+    font-size: 13px;
+  }
+
+  p.synopsis-content {
+    width: 100%;
+  }
+
+  
+
+  /*Connexion*/
+
+  .accounts {
+    width: 89%;
+  }
+
+  .card-accountImage {
+    height: unset;
+    width: 100%;
+    transition: all 0.5s;
+  }
+  
   /*Catalogue*/
 
   #flixnet-catalogue .title-button-container {
