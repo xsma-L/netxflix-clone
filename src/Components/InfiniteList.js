@@ -77,6 +77,8 @@ function InfiniteList(props) {
 
     return (
         <div className='pics-display'>
+            <div className='title-button-container'>
+            <h1>{props.infos.genreName}</h1>
             <div className='button-container'>
                     { props.infos.movieGenre ?
                         <>
@@ -91,6 +93,7 @@ function InfiniteList(props) {
                             </label> } 
                         </>
                     :""}
+            </div>
             </div>
                 <div className={divClassName} ref={ref}>
                 { props.data ?

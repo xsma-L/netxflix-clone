@@ -11,9 +11,11 @@ function TvShow(props) {
     const [showId, setShowID] = useState(params.showId);
     const [showType, setShowType] = useState(params.showType);
     const [showData, setShowData] = useState(null);
-    const [showVideos, setShowVideos] = useState(null);
+    const [showVideo, setShowVideo] = useState([]);
     const [releaseDate, setReleaseDate] = useState(null);
     const [vote, setVote] = useState(null);
+    const [modal, setModal] = useState(false);
+    const [videoLoading, setVideoLoading] = useState(true);
 
     useEffect(() => {
       axios.get(`https://api.themoviedb.org/3/${showType}/${showId}`, {
@@ -45,7 +47,8 @@ function TvShow(props) {
       })
       .catch((err) => console.log(err))
       .then((res) => {
-        setShowVideos(res.data.results);
+        if(res.data.results.length > 0)
+        setShowVideo(res.data.results[0]);
       })
     }, [])
 
@@ -70,10 +73,37 @@ function TvShow(props) {
         }
     }
 
+    const openModal = () => {
+        setModal(!modal);
+    };
+
+    const spinner = () => {
+        setVideoLoading(!videoLoading);
+    };
+
     return (
         <>
-        {showData && showVideos ?
+        {showData && showVideo ?
             <>
+                {modal ?
+                    <section className='modal_bg'>
+                        <div className='modal_align'>
+                            <div className='modal_content' open={modal}>
+                                <span className='close_button' onClick={openModal}>X</span>
+                                <div className='modal_video-align'>
+                                    {videoLoading ?
+                                        <div className='modal-spinner'>
+                                        </div>
+                                        :""
+                                    }
+                                    <iframe className='modal_video-style' onLoad={spinner} loading="lazy" width='800' height='500' src={`https://www.youtube.com/embed/${showVideo.key}`} title={showVideo.name} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    :""
+                }
                 <section className='show-info' style={{backgroundImage: `linear-gradient(#000000c7, #000000c7), url('https://image.tmdb.org/t/p/w500${showData.backdrop_path}')`}}>
                     <div className='show-main'>
                         <div className='show-img-container'>
@@ -92,12 +122,15 @@ function TvShow(props) {
                                 </div>
                             </div>
                             <div className='vote-container'>
-                                <div className='circle1'>
-                                    <CircularProgressBar percent={vote} size={70} colorSlice={'red'} colorCircle={'#6a0905'} fontColor={'#FFFFFF'} round={true} speed={80} unit={'%'} />
-                                </div>
-                                <span className='vote-label'>Nombre de votes positifs</span>
-                                    {showVideos.length > 0 ?
-                                        <div className='teaser-button-container'>
+                                { vote ?
+                                    <div className='circle1'>
+                                        <CircularProgressBar percent={vote} size={70} colorSlice={'red'} colorCircle={'#6a0905'} fontColor={'#FFFFFF'} round={true} speed={80} unit={'%'} />
+                                        <span className='vote-label'>Nombre de votes positifs</span>
+                                    </div> 
+                                    : ""
+                                }
+                                    {showVideo ?
+                                        <div className='teaser-button-container' onClick={openModal}>
                                             <img src='/play-button.png' alt='play-button'className='play-icon' />
                                             <span className='teaser-button-text'>Bande annonce</span>
                                         </div>

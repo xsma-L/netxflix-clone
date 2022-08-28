@@ -81,7 +81,6 @@ function Movie(props) {
                             </div>
                         </section>
                         :""
-
                     }
                     <div className='show-main'>
                         <div className='show-img-container'>
@@ -100,17 +99,19 @@ function Movie(props) {
                                 </div>
                             </div>
                             <div className='vote-container'>
-                                <div className='circle1'>
-                                    <CircularProgressBar percent={vote} size={70} colorSlice={'red'} colorCircle={'#6a0905'} fontColor={'#FFFFFF'} round={true} speed={80} unit={'%'} />
+                                <div className='vote-content'>
+                                    <div className='circle1'>
+                                        <CircularProgressBar percent={vote} size={70} colorSlice={'red'} colorCircle={'#6a0905'} fontColor={'#FFFFFF'} round={true} speed={80} unit={'%'} />
+                                    </div>
+                                        <span className='vote-label'>Nombre de votes positifs</span>
                                 </div>
-                                <span className='vote-label'>Nombre de votes positifs</span>
-                                    {movieVideo ?
-                                        <div className='teaser-button-container' onClick={openModal}>
-                                            <img src='/play-button.png' alt='play-button'className='play-icon' />
-                                            <span className='teaser-button-text'>Bande annonce</span>
-                                        </div>
-                                        :""
-                                    }
+                                {movieVideo ?
+                                    <div className='teaser-button-container' onClick={openModal}>
+                                        <img src='/play-button.png' alt='play-button'className='play-icon' />
+                                        <span className='teaser-button-text'>Bande annonce</span>
+                                    </div>
+                                    :""
+                                }
                             </div>
                             <span className='tagline'>{ showData.tagline }</span>
                             <div className='synopsis-title'>

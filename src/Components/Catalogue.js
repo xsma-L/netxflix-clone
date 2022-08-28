@@ -31,11 +31,9 @@ function Catalogue(props) {
         <main className='catalogue' id='flixnet-catalogue'>
             <section className='flixnet-catalogue'>
                 <div className='flixnet-catalogue-tile'>
-                    <h1>{genreName}</h1>
-                    <div className='toogle-button'>
-                    </div>
+                    {/* <h1>{genreName}</h1> */}
                 </div>
-                <InfiniteList data={data} setData={setData} infos={{genreId: genreId, isSerie: isSerie, switched: switched, seriesGenre: seriesGenreId, movieGenre: movieGenreId}}/>
+                <InfiniteList data={data} setData={setData} infos={{genreId: genreId, isSerie: isSerie, switched: switched, seriesGenre: seriesGenreId, movieGenre: movieGenreId, genreName: genreName}}/>
             </section>
         </main>
     );
