@@ -131,6 +131,10 @@ span.nav-userName {
   overflow: auto;
 }
 
+.home-main img.show-poster {
+  width: 160px;
+}
+
 .home-main {
   scroll-padding-right: 10px;
 }
@@ -249,7 +253,7 @@ span.see-more-text {
 /*Catalogue*/
 
 main.catalogue {
-  /* height: calc(100vh - 80px); */
+  height: calc(100vh - 80px);
   background: black;
   color: white;
   overflow: aut
@@ -703,53 +707,81 @@ iframe.modal_video-style {
 
 /*Laptop CSS*/
 
-/* @media (max-width: 1199.98px) { 
+@media (max-width: 1199.98px) { 
     .flixnet-catalogue-elements {
-      grid-template-columns: 230px 230px 230px 230px 230px;
+      grid-template-columns: 20% 20% 20% 20% 20%;
     } 
-} */
+
+    #flixnet-catalogue img.show-poster {
+      width: 80%;
+    }
+}
 
 @media (max-width: 991.98px) { 
-  .flixnet-catalogue-elements {
+  /*Catalogue*/
+
+  #flixnet-catalogue .flixnet-catalogue-elements {
     grid-template-columns: 25% 25% 25% 25%;
   }
 
-  img.show-poster {
+  #flixnet-catalogue img.show-poster {
     width: 80%;
   }
 }
 
 @media (max-width: 767.98px) {
+  /*Catalogue*/
+
+  /* #flixnet-catalogue .title-button-container {
+    align-items: center;
+  }
+
+  .flixnet-catalogue h1 {
+    height: auto;
+    font-size: 17px;
+  } */
 
   #flixnet-catalogue span.show-name{
     font-size: 12px;
   }
 
-  .button-container {
+  #flixnet-catalogue .button-container {
     margin-right: 30px;
   }
 
-  .toogle p {
+  #flixnet-catalogue .toogle p {
     font-size: 14px;
   }
 
-  .flixnet-catalogue-elements {
+  #flixnet-catalogue .flixnet-catalogue-elements {
     grid-template-columns: 33% 33% 33%; 
   }
 
-  img.show-poster {
+  #flixnet-catalogue img.show-poster {
     width: 90%;
   }
 }
 
-@media (max-width: 575.98px) { 
-  .flixnet-catalogue-elements {
+@media (max-width: 575.98px) {
+  /*Catalogue*/
+
+  #flixnet-catalogue .title-button-container {
+    align-items: center;
+  }
+
+  .flixnet-catalogue h1 {
+    height: auto;
+    font-size: 17px;
+  }
+
+  main.catalogue {
+    height: calc(100vh - 80px);
+  }
+
+  #flixnet-catalogue .flixnet-catalogue-elements {
     grid-template-columns: 50% 50%;
   }
  }
-
-
-
 
 
 @media (prefers-reduced-motion: no-preference) {
