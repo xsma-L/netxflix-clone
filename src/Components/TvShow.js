@@ -104,69 +104,75 @@ function TvShow(props) {
                     </section>
                     :""
                 }
-                <section className='show-info' style={{backgroundImage: `linear-gradient(#000000c7, #000000c7), url('https://image.tmdb.org/t/p/w500${showData.backdrop_path}')`}}>
-                    <div className='show-main'>
-                        <div className='show-img-container'>
-                            <img src={`https://image.tmdb.org/t/p/w500${showData.poster_path}`} alt={showData.name} />
-                        </div>
-                        <div className='show-infos'>
-                            <h2 className='show-name'>{ showData.name }</h2>
-                            <div className='show-date-genres'>
-                                <span className='show-date'>{ releaseDate} &#8226;</span>
-                                <div className='show-genres'>
-                                    {showData.genres.map(genre => {
-                                        return (
-                                            <span key={genre.id}>{ genre.name }</span>
-                                        )
-                                    })}
+                { !modal ?
+                    <>
+                        <section className='show-info' style={{backgroundImage: `linear-gradient(#000000c7, #000000c7), url('https://image.tmdb.org/t/p/w500${showData.backdrop_path}')`}}>
+                            <div className='show-main'>
+                                <div className='show-img-container'>
+                                    <img src={`https://image.tmdb.org/t/p/w500${showData.poster_path}`} alt={showData.name} />
                                 </div>
-                            </div>
-                            <div className='vote-container'>
-                                { vote ?
-                                    <div className='circle1'>
-                                        <CircularProgressBar percent={vote} size={70} colorSlice={'red'} colorCircle={'#6a0905'} fontColor={'#FFFFFF'} round={true} speed={80} unit={'%'} />
-                                        <span className='vote-label'>Nombre de votes positifs</span>
-                                    </div> 
-                                    : ""
-                                }
-                                    {showVideo ?
-                                        <div className='teaser-button-container' onClick={openModal}>
-                                            <img src='/play-button.png' alt='play-button'className='play-icon' />
-                                            <span className='teaser-button-text'>Bande annonce</span>
+                                <div className='show-infos'>
+                                    <h2 className='show-name'>{ showData.name }</h2>
+                                    <div className='show-date-genres'>
+                                        <span className='show-date'>{ releaseDate} &#8226;</span>
+                                        <div className='show-genres'>
+                                            {showData.genres.map(genre => {
+                                                return (
+                                                    <span key={genre.id}>{ genre.name }</span>
+                                                )
+                                            })}
                                         </div>
-                                        :""
-                                    }
-                            </div>
-                            <span className='tagline'>{ showData.tagline }</span>
-                            <div className='synopsis-title'>
-                                <h4>Synopsis</h4>
-                                <p className='synopsis-content'>{ showData.overview }</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section className='saisons-episodes'>
-                <h3 style={{color: '#FFFFFF'}}>Saisons & épisodes</h3>
-                <main className='saisons-container'>
-                    { showData.seasons.map(saison => {
-                        return (
-                            <div key={saison.name} className='saison-content'>
-                                <div className='saison-title' onClick={saisonClicked}>
-                                    { saison.poster_path !== null ?
-                                        <img src={`https://image.tmdb.org/t/p/w500${saison.poster_path}`} className='saison-img' alt={saison.name} />
-                                        :
-                                        <span className='saison-img no-pic'>F</span>
-                                    }
-                                    <h5 className='saison-name'>{saison.name}</h5>
+                                    </div>
+                                    <div className='vote-container'>
+                                        { vote ?
+                                            <>
+                                                <div className='circle1'>
+                                                    <CircularProgressBar percent={vote} size={70} colorSlice={'red'} colorCircle={'#6a0905'} fontColor={'#FFFFFF'} round={true} speed={80} unit={'%'} />
+                                                </div> 
+                                                <span className='vote-label'>Nombre de votes positifs</span>
+                                            </>
+                                            : ""
+                                        }
+                                            {showVideo ?
+                                                <div className='teaser-button-container' onClick={openModal}>
+                                                    <img src='/play-button.png' alt='play-button'className='play-icon' />
+                                                    <span className='teaser-button-text'>Bande annonce</span>
+                                                </div>
+                                                :""
+                                            }
+                                    </div>
+                                    <span className='tagline'>{ showData.tagline }</span>
+                                    <div className='synopsis-title'>
+                                        <h4>Synopsis</h4>
+                                        <p className='synopsis-content'>{ showData.overview }</p>
+                                    </div>
                                 </div>
-                                <Episode showId={showData.id} saison={saison.season_number} displayed={false}/>
                             </div>
-                        )
-                    })
+                        </section>
+                        <section className='saisons-episodes'>
+                            <h3 style={{color: '#FFFFFF'}}>Saisons & épisodes</h3>
+                            <main className='saisons-container'>
+                                { showData.seasons.map(saison => {
+                                    return (
+                                        <div key={saison.name} className='saison-content'>
+                                            <div className='saison-title' onClick={saisonClicked}>
+                                                { saison.poster_path !== null ?
+                                                    <img src={`https://image.tmdb.org/t/p/w500${saison.poster_path}`} className='saison-img' alt={saison.name} />
+                                                    :
+                                                    <span className='saison-img no-pic'>F</span>
+                                                }
+                                                <h5 className='saison-name'>{saison.name}</h5>
+                                            </div>
+                                            <Episode showId={showData.id} saison={saison.season_number} displayed={false}/>
+                                        </div>
+                                    )
+                                })
 
-                    }
-                </main>
-                </section>
+                                }
+                            </main>
+                        </section>
+                    </> :""
+                }
             </>
             :
             <section className='show-info'></section>    
