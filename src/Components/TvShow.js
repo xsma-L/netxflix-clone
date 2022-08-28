@@ -165,10 +165,8 @@ function TvShow(props) {
                                             </div>
                                             <Episode showId={showData.id} saison={saison.season_number} displayed={false}/>
                                         </div>
-                                    )
-                                })
-
-                                }
+                                    )}
+                                )}
                             </main>
                         </section>
                     </> :""
