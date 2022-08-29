@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import LazyLoad from 'react-lazy-load';
 import axios from 'axios';
 
@@ -10,11 +10,7 @@ function Home() {
     const [popularTvShows, setPopularTvShows] = useState([]);
     const [moviesGenre, setMoviesGenres] = useState([]);
     const [tvGenre, setTvGenres] = useState([]);
-    
-    const [datas, setDatas] = useState([]);
-
-    const location = useLocation();
-    
+        
     useEffect(() => {
         axios.get('https://api.themoviedb.org/3/movie/popular/', {
             params : {

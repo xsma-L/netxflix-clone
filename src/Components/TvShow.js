@@ -8,8 +8,8 @@ import axios from 'axios';
 function TvShow(props) {
     const params = useLocation().state;
 
-    const [showId, setShowID] = useState(params.showId);
-    const [showType, setShowType] = useState(params.showType);
+    const showId = params.showId;
+    const showType = params.showType;
     const [showData, setShowData] = useState(null);
     const [showVideo, setShowVideo] = useState([]);
     const [releaseDate, setReleaseDate] = useState(null);

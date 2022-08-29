@@ -7,8 +7,8 @@ import axios from 'axios';
 function Movie(props) {
     const params = useLocation().state;
 
-    const [showId, setShowID] = useState(params.showId);
-    const [showType, setShowType] = useState(params.showType);
+    const showId = params.showId;
+    const showType = params.showType;
     const [showData, setShowData] = useState(null);
     const [movieVideo, setMovieVideo] = useState(null);
     const [releaseDate, setReleaseDate] = useState(null);

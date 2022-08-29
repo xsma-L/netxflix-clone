@@ -50,7 +50,7 @@ function SearchWithGenre(props) {
     const findMoviesGenreID = (genreName) => {
         switch (genreName) {
             case 'Action & Adventure':
-                moviesGenre.map(genre => {
+                moviesGenre.forEach(genre => {
                     if(genre.name === 'Aventure') {
                         addMovies(genre.id);
                         setMovieGenreId(genre.id);
@@ -58,7 +58,7 @@ function SearchWithGenre(props) {
                 })
                 break;
             case 'War & Politics' : 
-                moviesGenre.map(genre => {
+                moviesGenre.forEach(genre => {
                     if(genre.name === 'Guerre') {
                         addMovies(genre.id);
                         setMovieGenreId(genre.id);
@@ -66,7 +66,7 @@ function SearchWithGenre(props) {
                 })
                 break;
             case 'Science-Fiction & Fantastique' :
-                moviesGenre.map(genre => {
+                moviesGenre.forEach(genre => {
                     if(genre.name === 'Fantastique') {
                         addMovies(genre.id);
                         setMovieGenreId(genre.id);
@@ -74,7 +74,7 @@ function SearchWithGenre(props) {
                 })
                 break;
             default :
-            moviesGenre.map(genre => {
+            moviesGenre.forEach(genre => {
                 if(genre.name === genreName) {
                     setMovieGenreId(genre.id);
                     addMovies(genre.id);

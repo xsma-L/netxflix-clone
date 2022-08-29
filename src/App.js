@@ -1,5 +1,3 @@
-// import ReactDOM from "react-dom/client";
-import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -12,9 +10,6 @@ import TvShow from "./Components/TvShow";
 import './App.css';
 
 function App() {
-
-  const [userName, setUserName] = useState(null);
-  const [userPicture, setUserPicture] = useState(null);
 
   return (
     <>
@@ -29,12 +24,6 @@ function App() {
       <div className="logo-container">
         <span className="logo">FLIXNET</span>
       </div>
-      { userName ?
-        <div className="nav-user">
-          <span className="nav-userName">{ userName }</span>
-          <img className="nav-userPicture" src={userPicture} alt='nav-userPicture' />
-        </div>
-      : ''}
     </nav>
 
       <BrowserRouter>
