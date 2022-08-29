@@ -700,25 +700,26 @@ section.modal_bg {
 }
 
 span.close_button {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  padding: 10px;
-  border-radius: 50%;
-  border: 2px solid white;
-  background: #DB202C;
-  right: 5%;
-  color: #000000;
-  font-size: 25px;
-  font-weight: bold;
   align-items: center;
+  background: #b1b1b152;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  font-size: 25px;
+  font-weight: 700;
+  height: 40px;
   justify-content: center;
+  padding: 10px;
+  position: absolute;
+  right: 5%;
+  width: 40px;
+  transition: all 0.4s;
 }
 
 span.close_button:hover {
   cursor: pointer;
-  color: #FFFFFF;
+  color: #000000;
 }
 
 iframe.modal_video-style {
