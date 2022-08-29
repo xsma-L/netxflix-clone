@@ -946,6 +946,7 @@ iframe.modal_video-style {
 
   .saison-title {
     width: 95%;
+    margin: unset;
   }
 
   .episode-container {
