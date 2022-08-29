@@ -14,6 +14,7 @@ body {
 
 #root {
   background: #000000;
+  height: 100vh;
 }
 
 a {
@@ -175,6 +176,8 @@ section.nouveautés {
   display: flex;
   margin-top: 20px;
   overflow: overlay;
+  overflow: scroll;
+  scrollbar-width: none;
 }
 
 .discover-content::-webkit-scrollbar {
@@ -266,7 +269,7 @@ main.catalogue {
   height: calc(100vh - 80px);
   background: black;
   color: white;
-  overflow: aut
+  overflow: auto;
 }
 
 .flixnet-catalogue-tile {
@@ -371,6 +374,7 @@ main.catalogue {
   grid-template-columns: 20% 20% 20% 20% 20%;
   justify-content: center;
   overflow: overlay;
+  overflow: scroll;
 }
 
 .only-series {
@@ -411,7 +415,8 @@ section.show-info {
 
 .filter {
   position: absolute;
-  height: calc(100vh - 80px);;
+  height: calc(100vh - 80px);
+  /* height: 100vh; */
   width: 100%;
   padding: 20px 25px 20px 25px;
   background-position: center;
@@ -622,6 +627,8 @@ h5.saison-name {
   margin-top: 25px;
   padding-top: 20px;
   overflow: overlay;
+  overflow: scroll;
+  scrollbar-width: none;
   background: rgba(141, 141, 141, 0.13);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -734,7 +741,7 @@ iframe.modal_video-style {
   }
 
   section.show-info {
-    height: 100%;
+    height: calc(100vh - 80px);
   }
 
   .show-infos {
@@ -797,6 +804,14 @@ iframe.modal_video-style {
   p.synopsis-content {
     width: 95%;
   }
+
+  .show-date-genres {
+    flex-direction: column;
+  }
+
+  .show-genres {
+    margin-left: 0px;
+  }
   
 }
 
@@ -838,7 +853,8 @@ iframe.modal_video-style {
   /*Movie*/
 
   section.show-info {
-    height: 100%;
+    height: fit-content;
+    height: -moz-fit-content;
     background-image: none !important;
     background: black;
   }
@@ -856,6 +872,8 @@ iframe.modal_video-style {
 }
 
 @media (max-width: 575.98px) {
+  /*Movie & TvShow*/
+
   span.close_button {
     top: 15px;
   }
@@ -877,7 +895,8 @@ iframe.modal_video-style {
   }
 
   section.show-info {
-    height: 100%;
+    height: fit-content;
+    height: -moz-fit-content;
     background-image: none !important;
     background: black;
   }
@@ -925,24 +944,24 @@ iframe.modal_video-style {
 
   .saison-title {
     width: 95%;
-}
+  }
 
-.episode-container {
-  width: 100%;
-  flex-direction: column;
-}
+  .episode-container {
+    width: 100%;
+    flex-direction: column;
+  }
 
-img.episode-poster {
-  width: 90%;
-}
+  img.episode-poster {
+    width: 90%;
+  }
 
-.episode-infos {
-  width: 90%;
-}
+  .episode-infos {
+    width: 90%;
+  }
 
-.episode-infos {
-  margin: 15px 0 0 0;
-}
+  .episode-infos {
+    margin: 15px 0 0 0;
+  }
 
   /*Connexion*/
 
@@ -974,4 +993,4 @@ img.episode-poster {
   #flixnet-catalogue .flixnet-catalogue-elements {
     grid-template-columns: 50% 50%;
   }
- }
+}
