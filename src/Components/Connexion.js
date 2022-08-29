@@ -1,8 +1,6 @@
-// import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import axios from 'axios';
 
-function Acceuil() {
+function Connexion() {
 
     return (
         <main className='acceuil-content'>
@@ -21,4 +19,4 @@ function Acceuil() {
     );
 }
 
-export default Acceuil;
+export default Connexion;

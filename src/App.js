@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
-import Acceuil from './Components/Acceuil';
+import Connexion from './Components/Connexion';
 import Home from './Components/Home';
 import Catalogue from "./Components/Catalogue";
 import Movie from "./Components/Movie";
@@ -14,7 +14,7 @@ function App() {
   return (
     <>
     <Helmet>
-        <title>Flixnet netflix sans streaming !</title>
+        <title>Flixnet un netflix sans streaming !</title>
         <meta name="flixnet" content="Flixnet netflix sans streaming !" />
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -28,7 +28,7 @@ function App() {
 
       <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Acceuil />} />
+        <Route path='/' element={<Connexion />} />
         <Route path='home' element={<Home />} />
         <Route path='catalogue/:genreName/:genreID' element={<Catalogue />} />
         <Route path='movie/:shownName' element={<Movie />} />
