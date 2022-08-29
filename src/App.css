@@ -528,6 +528,7 @@ p.synopsis-content {
 
 .saisons-episodes {
   height: 100vh;
+  background: black;
 }
 
 .saisons-container {
