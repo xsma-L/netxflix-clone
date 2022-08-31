@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 import Connexion from './Components/Connexion';
@@ -20,13 +20,13 @@ function App() {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </Helmet>
-    <nav>
-      <div className="logo-container">
-        <span className="logo">FLIXNET</span>
-      </div>
-    </nav>
 
       <BrowserRouter>
+        <nav>
+          <div className="logo-container">
+            <Link to={'home'}><span className="logo">FLIXNET</span></Link>
+          </div>
+        </nav>
       <Routes>
         <Route path='/' element={<Connexion />} />
         <Route path='home' element={<Home />} />
